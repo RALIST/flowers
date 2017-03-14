@@ -1,0 +1,47 @@
+.container
+  .row.align-items-center
+    %nav.navbar.col-12.justify-content-between.flex-row.align-items-center
+      .navbar-brand.flex-row
+        = link_to root_path do
+          = image_tag 'logo.png', class: 'img-fluid'
+      #navbar.d-flex.flex-row
+        %ul.navbar-nav.flex-row
+          - unless current_user
+            %li.nav-item
+              = link_to 'Вход/Регистрация', login_path, class: 'nav-link btn btn-outline-success'
+            %li.nav-item
+              = link_to 'Я флорист', root_path, target: '_blank', class: 'nav-link btn btn-outline-success'
+          - else
+            %li.nav-item.dropdown
+              %a.dropdown-toggle{data:{toggle: 'dropdown'}}
+                Мой аккаунт
+              .dropdown-menu
+                %h4.dropdown-header
+                  Здравствуйте,
+                  - unless current_user.name.blank?
+                    = current_user.name
+                  - else
+                    = current_user.email
+                .dropdown-divider
+                .dropdown-item
+                  = link_to account_path do
+                    %i.fa.fa-user-o
+                    Личная информация
+                .dropdown-item
+                  = link_to '#' do
+                    %i.fa.fa-history
+                    История заказов
+                .dropdown-item
+                  = link_to '#' do
+                    %i.fa.fa-address-card-o
+                    Адресная книга
+                .dropdown-divider
+                .dropdown-item
+
+                  = link_to logout_path, method: :delete do
+                    %i.fa.fa-sign-out
+                    Выйти
+            %li.nav-item
+              = link_to 'Помощь'
+            %li.nav-item
+              = link_to 'Выйти', logout_path, method: :delete

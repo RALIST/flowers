@@ -1,0 +1,31 @@
+#navbar {
+  .navbar-nav {
+    li {
+      padding-left: 2rem;
+    }
+  }
+  .dropdown-toggle {
+    cursor: pointer;
+  }
+  .dropdown-menu {
+    min-width: 15rem;
+    left: -5rem;
+  }
+}
+
+
+
+.navbar-toggler  i {
+  font-size: 3rem;
+}
+
+.navbar-brand {
+  img {
+    max-height: 4rem;
+  }
+}
+
+.nav-link {
+  padding: 0.5em 0.5em !important;
+}
+

@@ -1,0 +1,28 @@
+.jumbotron-fluid {
+  background: image-url('main.jpg') no-repeat;
+  background-size: cover;
+  height: 700px;
+
+}
+#main {
+  @include make-col-xs(10);
+  @include make-col-sm(10);
+  @include make-col-md(8);
+  @include make-col-lg(5);
+  @include make-col-xl(5);
+  background: transparentize(#ffffff, 0.2);
+  padding: 1rem;
+  h1 {
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+  p {
+    font-size: 1.2rem;
+  }
+}
+
+hr {
+  border-top: 1px solid $brand-success !important;
+  width: 6rem;
+  margin-bottom: 1rem !important;
+  }

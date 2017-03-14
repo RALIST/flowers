@@ -1,0 +1,48 @@
+$font-family-serif: 'Gabriela', serif;
+$font-family-sans-serif: 'EB Garamond', serif;
+$font-family-base:  $font-family-sans-serif;
+$brand-primary: #FF0080;
+
+h1, h2, h3, h4, h5, a {
+  font-family:  $font-family-serif !important;
+}
+
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+@mixin make-col-xs( $cols ) {
+  @include make-col-ready();
+  @include media-breakpoint-only(xs) {
+    @include make-col($cols);
+  }
+}
+
+@mixin make-col-sm( $cols ) {
+  @include make-col-ready();
+  @include media-breakpoint-only(sm) {
+    @include make-col($cols);
+  }
+}
+
+@mixin make-col-md( $cols ) {
+  @include make-col-ready();
+  @include media-breakpoint-only(md) {
+    @include make-col($cols);
+  }
+}
+
+@mixin make-col-lg( $cols ) {
+  @include make-col-ready();
+  @include media-breakpoint-only(lg) {
+    @include make-col($cols);
+  }
+}
+
+@mixin make-col-xl( $cols ) {
+  @include make-col-ready();
+  @include media-breakpoint-only(xl) {
+    @include make-col($cols);
+  }
+}
+
+

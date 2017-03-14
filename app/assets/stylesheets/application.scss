@@ -10,6 +10,18 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import 'header';
+@import 'variables';
+@import 'main';
+@import 'users';
+@import url('https://fonts.googleapis.com/css?family=Gabriela');
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond');
+@import "bootstrap";
+
+input[type='submit'] {
+  cursor: pointer;
+}

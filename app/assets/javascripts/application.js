@@ -12,5 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require tether
+//= require bootstrap
+//= require jquery.maskedinput
+//= require clockpicker
+//= require jquery-ui
+//= require jquery.ui.touch-punch
 //= require_tree .

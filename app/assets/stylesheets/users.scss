@@ -1,0 +1,43 @@
+.form-wrapper {
+  @include make-col-xl(5);
+  @include make-col-lg(5);
+  background: transparentize(#ffffff, 0.2);
+}
+
+.account-menu {
+  @include make-col-xl(3);
+  @include make-col-lg(3);
+}
+
+.user-info {
+  @include make-col-xl(9);
+  @include make-col-lg(9);
+}
+
+#account {
+  margin: 2rem auto;
+
+}
+
+.account-menu {
+  border: 1px solid $brand-success;
+  border-radius: 4px 0 0 4px;
+  max-height: 100%;
+  padding: 1rem 15px;
+  i {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    text-decoration: none;
+
+  }
+
+  hr {
+    width: 100%;
+  }
+
+}
+.user-info {
+  padding: 1rem 15px;
+  border: 1px solid $brand-success;
+  border-radius: 0 4px 4px 0;
+}

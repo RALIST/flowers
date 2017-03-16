@@ -48,6 +48,6 @@ gem 'rack-canonical-host'
 gem 'bootstrap-will_paginate'
 gem 'ratyrate'
 
-group :production do
-  gem 'rails_12factor'
-end
+# group :production do
+#   gem 'rails_12factor'
+# end

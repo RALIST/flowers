@@ -91,7 +91,7 @@ Rails.application.configure do
           secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
         }
     }
-
+  end
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end

@@ -1,0 +1,24 @@
+.col-6
+  = form_for [:florist, @product] do |f|
+    - if @product.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
+        %ul
+          - @product.errors.full_messages.each do |msg|
+            %li= msg
+
+    .form-group
+      = f.label :name, 'Название'
+      = f.text_field :name, class: 'form-control'
+    .form-group
+      = f.label :desc, 'Описание'
+      = f.text_area :desc, rows: 5,  class: 'form-control'
+    .form-group
+      = f.label :price, 'Цена'
+      = f.text_field :price, class: 'form-control'
+
+      = f.fields_for :images, Image.new do |i|
+        = i.file_field :pic
+
+    .form-grpup.text-right
+      = f.submit 'Добавить', class: 'btn btn-success'

@@ -1,0 +1,22 @@
+.col-4
+  .card
+    = link_to product_path(product) do
+      - product.images.each do |i|
+        = image_tag i.pic.url(:thumb), class: 'img-fluid img-cover'
+    .card-block
+      .d-flex.justify-content-between.align-items-center
+        %span
+          = product.name
+        #price
+          = number_to_currency(product.price)
+      %hr.my-2
+      = link_to company_path(product.company) do
+        .row.align-items-center
+          .col-3
+            = image_tag product.company.image.pic(:small), class: 'img-fluid rounded-circle', style: 'width: 30px; height: 30px;'
+          .col-9
+            .small
+              = product.company.name
+            .small
+              Рейтинг
+

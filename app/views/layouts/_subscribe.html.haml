@@ -1,0 +1,9 @@
+.container-fluid.bg-brand
+  .container
+    .row.align-items-center
+      .col-6
+        %h1.h4.my-4 Подпишитесь на нашу рассылку!
+      .col-6
+        .form-inline.my-4.d-flex.justify-content-start
+          = email_field_tag :email,'', class: 'form-control', placeholder: 'Ваш email'
+          = submit_tag 'Подписаться', class: 'btn btn-outline-white ml-3'

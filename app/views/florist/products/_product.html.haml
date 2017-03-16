@@ -1,0 +1,11 @@
+
+.col-4
+  .card
+    .col-12.text-center
+      - product.images.each do |image|
+        = image_tag image.pic.url(:thumb), class: 'img-fluid card-image-top'
+      .card-footer
+        %h4
+          = product.name
+        = product.price
+        = product.company.name

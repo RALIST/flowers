@@ -7,5 +7,13 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
   %body
+    #flash.col-6
+      - flash.each do |key, message|
+        %div{class: "alert alert-#{key} alert-dismissible in text-center", style: 'z-index: 999;'}
+          = sanitize(message)
+          %button{type: "button",  class: "close", style: 'font-size: 2em;' ,  data:{dismiss: "alert"} }
+            %span
+              &times;
     = render 'layouts/header'
     = yield
+    = render 'layouts/subscribe' unless @disable_subscribe

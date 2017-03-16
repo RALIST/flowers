@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @product.name
+%p
+  %b Desc:
+  = @product.desc
+%p
+  %b Price:
+  = @product.price
+%p
+  %b Order count:
+  = @product.order_count
+%p
+  %b Views count:
+  = @product.views_count
+%p
+  %b References:
+  = @product.references
+
+= link_to 'Edit', edit_product_path(@product)
+\|
+= link_to 'Back', products_path

@@ -1,0 +1,53 @@
+.container#account
+  .row
+    .col-6
+      - @product.images.each do |i|
+        = image_tag i.pic.url(:large), class: 'img-fluid'
+    .col-6
+      .card
+        %h4.card-title.text-center
+          = @product.name
+        %h3.text-success.text-center
+          = number_to_currency(@product.price)
+        .row.card-block.justify-content-around
+          .col-4
+            = link_to 'Как есть', '', class: 'btn btn-outline-primary btn-lg btn-block'
+          .col-4
+            = link_to 'Премиум', '', class: 'btn btn-outline-primary btn-lg btn-block'
+          .col-4
+            = link_to 'Люкс', '', class: 'btn btn-outline-primary btn-lg btn-block'
+        .card-block
+          Букет будет выглядеть примерно как на фото
+        %hr
+        %h5.text-center Выберите дату доставки
+        .card-group
+          .col-6.card#delivery
+            = link_to '' do
+              %i.fa.fa-calendar-check-o
+              %small Сегодня
+          .col-6.card#delivery
+            = link_to '' do
+              %i.fa.fa-calendar
+              %small Выбрать дату
+        .card-block.text-uppercase
+          = link_to 'оформить заказ', '', class: 'btn btn-success btn-lg btn-block'
+  %hr
+  .row
+    .col-6
+      %strong
+        Описание букета
+      %P
+        = @product.desc
+    .col-6
+      %strong
+        Изготовлено в
+      .row
+        .col-3
+          = image_tag @product.company.image.pic.url(:small), class: 'img-fluid rounded-circle', style: 'height: 100%;'
+        .col-9
+          %h4
+            = @product.company.name
+            .small{style: 'font-size: 0.6em;'}
+              = @product.company.owner.full_name
+          %p
+            = link_to 'В магазин', company_path(@product.company), class: 'btn btn-sm btn-outline-primary'

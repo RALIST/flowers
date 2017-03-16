@@ -1,6 +1,6 @@
-class SessionsController < ApplicationController
+class Admin::SessionsController < ApplicationController
   def new
-    @user = User.new
+    @user = Admin.new
   end
 
   def create

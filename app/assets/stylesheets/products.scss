@@ -1,0 +1,33 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#price {
+  font-weight: 700;
+  color: $brand-primary;
+  font-size: 1.2rem;
+}
+
+#delivery {
+  line-height: 0.7rem;
+  text-align: center;
+  padding: 15px 15px;
+  margin-bottom: 0;
+  i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  &:hover {
+    border: 1px solid transparentize($brand-primary, 0.65)
+  }
+}
+
+.card {
+  margin-bottom: 1.5rem;
+  &:hover {
+    border: 1px solid transparentize($brand-primary, 0.65)
+  }
+  .card-title {
+    margin-top: 1rem;
+  }
+}

@@ -1,0 +1,9 @@
+.container#account
+  .row
+    = render 'florist/dashboard/left_menu'
+    .user-info
+      %h3 Ваши букеты
+      = link_to 'Добавить букет', new_florist_product_path, class: 'btn btn-primary'
+      .row.card-deck
+        = render(@products) || 'Вы не добавили ни одного букета'
+

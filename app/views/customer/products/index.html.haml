@@ -1,0 +1,41 @@
+.container#account
+  %h1.h3
+    Доставка цветов в Ижевске
+  %h2.h5
+    Цветы на любой вкус и бюджет
+  %hr.my-4
+  .row
+    .col-2
+      %h5 Дата доставки
+      .card-group
+        .col-6.card#delivery
+          = link_to '' do
+            %i.fa.fa-calendar-check-o
+            %small Сегодня
+        .col-6.card#delivery
+          = link_to '' do
+            %i.fa.fa-calendar
+            %small Выбрать дату
+      %hr
+      %h5 Цена
+      %ul.nav.small.flex-column
+        %li.nav-item
+          = link_to 'До 1000 руб.', class: 'nav-link'
+        %li.nav-item
+          = link_to '1000-2000 руб.', class: 'nav-link'
+        %li.nav-item
+          = link_to '2000-3000 руб.', class: 'nav-link'
+        %li.nav-item
+          = link_to '3000-4500 руб.', class: 'nav-link'
+        %li.nav-item
+          = link_to '4500 руб. и выше', class: 'nav-link'
+      %hr
+      %h5 Повод
+      %hr
+      %h5 Стиль
+      %hr
+      %h5 Тип букета
+      %hr
+    .col-10.card-deck
+      = render collection: @products, partial: 'thumb_product', as: :product
+

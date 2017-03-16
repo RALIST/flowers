@@ -11,11 +11,11 @@
  * It is generally better to create a new file per style scope.
  *
  */
-
+@import 'variables';
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import 'header';
-@import 'variables';
+@import 'products';
 @import 'main';
 @import 'users';
 @import url('https://fonts.googleapis.com/css?family=Gabriela');
@@ -24,4 +24,44 @@
 
 input[type='submit'] {
   cursor: pointer;
+}
+
+#flash {
+  position: absolute;
+  z-index: 999;
+  top: 5rem;
+  right: 4rem;
+  font-size: 1.2rem;
+}
+
+a:hover, a:active, a:focus {
+  text-decoration: none;
+}
+
+.card .img-cover {
+  height: 100%;
+  object-fit: cover;
+}
+
+.card hr {
+  width: 100%;
+}
+
+html {
+  font-size: 16px;
+}
+
+.bg-brand {
+  background: $brand-primary;
+  color: #ffffff;
+}
+
+.btn-outline-white {
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  &:hover {
+    background: #ffffff;
+    color: $brand-primary;
+  }
 }

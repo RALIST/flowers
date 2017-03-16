@@ -1,0 +1,25 @@
+.container#account
+  .row
+    = render 'left_menu'
+    .user-info
+      %h4.text-center
+        Личная информация
+      .col-6
+        = form_for @user, url: florist_user_path(@user) do |f|
+          .form-group
+            =f.label 'Имя'
+            = f.text_field :name,  class: 'form-control'
+          .form-group
+            =f.label 'Фамилия'
+            = f.text_field :last_name, class: 'form-control'
+          .form-group
+            =f.label 'Email'
+            = f.email_field :email, class: 'form-control'
+          .form-group
+            =f.label 'Телефон'
+            = f.phone_field :phone, class: 'form-control'
+          .form-group
+            =f.label 'Пол'
+            = f.select :gender, User.genders.keys, {include_blank: true, selected: @user.gender}, class: 'form-control'
+          .form-group.text-right
+            = f.submit 'Обновить информацию', class: 'btn btn-success'

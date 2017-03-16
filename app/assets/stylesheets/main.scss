@@ -22,7 +22,6 @@
 }
 
 hr {
-  border-top: 1px solid $brand-success !important;
-  width: 6rem;
+  border-top: 1px solid transparentize($brand-success, 0.65) !important;
   margin-bottom: 1rem !important;
   }

@@ -1,0 +1,28 @@
+.container#account
+  .row
+    = render 'florist/dashboard/left_menu'
+    .user-info
+      - unless @company
+        %h3
+          У вас пока нет магазина
+          %p
+          = link_to 'Добавить магазин', new_florist_company_path, class: 'btn btn-primary'
+      - else
+        %h4
+          = @company.name
+          %small
+            = link_to edit_florist_company_path(@company) do
+              %i.fa.fa-pencil-square-o
+            = link_to named_company_path(@company), target: '_blank' do
+              %i.fa.fa-globe
+        %p
+          %h5 Статистика за неделю:
+          %p
+            Заказов
+          %p
+            Просмотров
+          %p
+            Рейтинг
+
+        = link_to 'Отзывы', '', class: 'btn btn-primary'
+

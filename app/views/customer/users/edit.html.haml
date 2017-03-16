@@ -27,7 +27,7 @@
         = form_for current_user do |f|
           .form-group
             =f.label 'Имя'
-            = f.text_field :name, class: 'form-control'
+            = f.text_field :name,  class: 'form-control'
           .form-group
             =f.label 'Фамилия'
             = f.text_field :last_name, class: 'form-control'
@@ -40,6 +40,6 @@
           .form-group
             =f.label 'Пол'
             = f.select :gender, options_for_select(['мужчина', 'женщина', 'другое']), {include_blank: true}, class: 'form-control'
-          .form-group
+          .form-group.text-right
             = f.submit 'Обновить информацию', class: 'btn btn-success'
 

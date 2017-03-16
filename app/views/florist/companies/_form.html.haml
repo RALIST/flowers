@@ -1,0 +1,23 @@
+.col-6
+  = form_for [:florist, @company] do |f|
+    - if @company.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@company.errors.count, "error")} prohibited this company from being saved:"
+        %ul
+          - @company.errors.full_messages.each do |msg|
+            %li= msg
+
+    .form-group
+      = f.label :name, 'Название'
+      = f.text_field :name, class: 'form-control'
+    .form-group
+      = f.label :desc, 'Описание'
+      = f.text_area :desc, rows: 5, class: 'form-control'
+    .form-group
+      = f.label :url, 'Ссылка на сайт'
+      = f.text_field :url, class: 'form-control'
+    .form-control
+      = f.fields_for :image, Image.new do |i|
+        = i.file_field :pic
+    .form-group.text-right
+      = f.submit 'Добавить', class: 'btn btn-success'

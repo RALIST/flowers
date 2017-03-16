@@ -15,6 +15,7 @@
               %i.fa.fa-pencil-square-o
             = link_to named_company_path(@company), target: '_blank' do
               %i.fa.fa-globe
+        = total_rating_for @company, readonly: true
         %p
           %h5 Статистика за неделю:
           %p
@@ -22,7 +23,7 @@
           %p
             Просмотров
           %p
-            Рейтинг
+
 
         = link_to 'Отзывы', '', class: 'btn btn-primary'
 

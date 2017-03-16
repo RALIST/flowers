@@ -11,6 +11,10 @@ class Company < ApplicationRecord
 
   def total_rating
     rating = Rate.where(rateable: self).pluck(:stars)
-    return (rating.sum / rating.size).round(2)
+    if rating.size > 0
+      return (rating.sum / rating.size).round(2)
+    else
+      return 0
+    end
   end
 end

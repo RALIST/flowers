@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316085420) do
+ActiveRecord::Schema.define(version: 20170316150145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,26 @@ ActiveRecord::Schema.define(version: 20170316085420) do
     t.float    "avg",           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "customer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["customer_id"], name: "index_carts_on_customer_id", using: :btree
+  end
+
+  create_table "colors", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "colors_products", id: false, force: :cascade do |t|
+    t.integer "color_id"
+    t.integer "product_id"
+    t.index ["color_id"], name: "index_colors_products_on_color_id", using: :btree
+    t.index ["product_id"], name: "index_colors_products_on_product_id", using: :btree
   end
 
   create_table "companies", force: :cascade do |t|

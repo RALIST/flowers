@@ -1,4 +1,4 @@
-.col-6
+.col-12
   = form_for [:florist, @product] do |f|
     - if @product.errors.any?
       #error_explanation
@@ -16,9 +16,14 @@
     .form-group
       = f.label :price, 'Цена'
       = f.text_field :price, class: 'form-control'
-
+    .form-group
       = f.fields_for :images, Image.new do |i|
         = i.file_field :pic
+    .form-group
+      = f.collection_check_boxes :color_ids, Color.all, :id, :name do |b|
+        .form-check-inline
+          = b.label(class: 'form-check-label') { b.check_box(class: 'form-check-input') + b.text }
+
 
     .form-grpup.text-right
       = f.submit 'Добавить', class: 'btn btn-success'

@@ -1,4 +1,4 @@
-class Customer::ProductsController < ApplicationController
+class Customer::ProductsController < Customer::CustomerController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products

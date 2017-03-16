@@ -1,4 +1,4 @@
-class Customer::UsersController < ApplicationController
+class Customer::UsersController < Customer::CustomerController
   def new
     @user = Customer.new
   end

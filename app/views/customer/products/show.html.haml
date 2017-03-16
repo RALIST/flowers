@@ -31,16 +31,18 @@
               %small Выбрать дату
         .card-block.text-uppercase
           = link_to 'оформить заказ', '', class: 'btn btn-success btn-lg btn-block'
-  %hr
+  %hr.my-2
   .row
     .col-6
-      %strong
-        Описание букета
+      .my-2
+        %strong
+          Описание букета
       %P
         = @product.desc
     .col-6
-      %strong
-        Изготовлено в
+      .my-2
+        %strong
+          Дизайн
       .row
         .col-3
           = image_tag @product.company.image.pic.url(:small), class: 'img-fluid rounded-circle', style: 'height: 100%;'

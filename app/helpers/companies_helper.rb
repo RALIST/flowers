@@ -13,7 +13,7 @@ module CompaniesHelper
     cancel_hint  = options[:cancel_hint]  || 'Cancel current rating!'
     cancel_on    = options[:cancel_on]    || image_path('cancel-on.png')
     cancel_off   = options[:cancel_off]   || image_path('cancel-off.png')
-    noRatedMsg   = options[:noRatedMsg]   || 'I\'am readOnly and I haven\'t rated yet!'
+    noRatedMsg   = options[:noRatedMsg]   || 'Пока нет ни одной оценки!'
     # round        = options[:round]        || { down: .26, full: .6, up: .76 }
     space        = options[:space]        || false
     single       = options[:single]       || false

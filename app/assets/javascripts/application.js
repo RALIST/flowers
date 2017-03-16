@@ -13,9 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require tether
-//= require bootstrap
 //= require jquery.maskedinput
 //= require clockpicker
 //= require jquery-ui
 //= require jquery.ui.touch-punch
+//= require bootstrap
+//= require jquery.raty
+//= require ratyrate
 //= require_tree .
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});

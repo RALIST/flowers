@@ -14,7 +14,12 @@ class Florist::CompaniesController < Florist::FloristController
 
   # GET /companies/new
   def new
-    @company = Company.new
+    unless current_user.company
+      @company = Company.new
+    else
+      redirect_to florist_companies_path
+      flash[:danger] = 'Вы уже зарегистрировали компанию'
+    end
   end
 
   # GET /companies/1/edit

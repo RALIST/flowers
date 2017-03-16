@@ -16,10 +16,12 @@
 @import "font-awesome";
 @import 'header';
 @import 'products';
+@import 'companies';
 @import 'main';
 @import 'users';
 @import url('https://fonts.googleapis.com/css?family=Gabriela');
 @import url('https://fonts.googleapis.com/css?family=EB+Garamond');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800');
 @import "bootstrap";
 
 input[type='submit'] {
@@ -38,7 +40,7 @@ a:hover, a:active, a:focus {
   text-decoration: none;
 }
 
-.card .img-cover {
+.img-cover {
   height: 100%;
   object-fit: cover;
 }
@@ -64,4 +66,9 @@ html {
     background: #ffffff;
     color: $brand-primary;
   }
+}
+
+.tooltip-arrow, .tooltip-inner {
+  background: $brand-primary;
+  font-family: 'Open Sans', sans-serif;
 }

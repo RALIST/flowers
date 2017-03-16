@@ -1,11 +1,49 @@
-%p#notice= notice
+.container-fluid.p-0
+  .shop-header.py-5.bg-inverse.text-white
+    .container
+      .row
+        .col-2
+          = image_tag @company.image.pic.url(:thumb), class: 'img-fluid rounded'
+        .col-5
+          %h3
+            = @company.name
+          #rate
+            Скорость:
+            = rating_for @company, 'delivery_speed', readonly: true
+          #rate
+            Качество:
+            = rating_for @company, 'flowers_quality', readonly: true
+          #rate
+            Цены:
+            = rating_for @company, 'price', readonly: true
+        .col-5.text-right
+          %h4
+            Связаться
+          %p.h5
+            + 7 3412 4614168
+          %p.h3
+            = link_to '' do
+              %i.fa.fa-vk.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Вконтакте', tabindex: "0"}
+            = link_to '' do
+              %i.fa.fa-instagram.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Instagram', tabindex: "0"}
+            = link_to '' do
+              %i.fa.fa-facebook-official.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Facebook', tabindex: "0"}
+            = link_to '' do
+              %i.fa.fa-globe.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Сайт флориста', tabindex: "0"}
+  .shop-menu.bg-faded
+    .container
+      .row.mb-5
+        .col-2
+        .col-10
+          %ul.nav.nav-tabs.pt-2.h5
+            %li.nav-item
+              = link_to 'Каталог', '', class: 'nav-link'
+            %li.nav-item
+              = link_to 'Отзывы', '', class: 'nav-link'
+  .shop-content
+    .container
+      .row
+        = render 'customer/products/products_menu'
+        .col-10.card-deck
+          = render collection:  @products, partial: 'customer/products/thumb_product', as: :product
 
-%p
-  %b Name:
-  = @company.name
-%p
-  %b Desc:
-  = @company.desc
-%p
-  %b Url:
-  = @company.url

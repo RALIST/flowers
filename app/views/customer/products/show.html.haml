@@ -7,7 +7,7 @@
       .card
         %h4.card-title.text-center
           = @product.name
-        %h3.text-success.text-center
+        .lead.text-success.text-center
           = number_to_currency(@product.price)
         .row.card-block.justify-content-around
           .col-4
@@ -49,5 +49,6 @@
             = @product.company.name
             .small{style: 'font-size: 0.6em;'}
               = @product.company.owner.full_name
+              = total_rating_for @product.company, readonly: true
           %p
             = link_to 'В магазин', company_path(@product.company), class: 'btn btn-sm btn-outline-primary'

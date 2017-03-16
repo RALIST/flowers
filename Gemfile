@@ -46,6 +46,7 @@ gem 'sitemap_generator'
 # gem 'letsencrypt_plugin'
 gem 'rack-canonical-host'
 gem 'bootstrap-will_paginate'
+gem 'ratyrate'
 
 group :production do
   gem 'rails_12factor'

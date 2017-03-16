@@ -1,0 +1,68 @@
+.col-2
+  %h5 Дата доставки
+  .card-group
+    .col-6.card#delivery
+      = link_to '' do
+        %i.fa.fa-calendar-check-o
+        %small Сегодня
+    .col-6.card#delivery
+      = link_to '' do
+        %i.fa.fa-calendar
+        %small Выбрать дату
+  %hr
+  %h5 Цена
+  %ul.nav.small.flex-column
+    %li.nav-item
+      = link_to 'До 1000 руб.', class: 'nav-link'
+    %li.nav-item
+      = link_to '1000-2000 руб.', class: 'nav-link'
+    %li.nav-item
+      = link_to '2000-3000 руб.', class: 'nav-link'
+    %li.nav-item
+      = link_to '3000-4500 руб.', class: 'nav-link'
+    %li.nav-item
+      = link_to '4500 руб. и выше', class: 'nav-link'
+  %hr
+  %h5 Повод
+  %ul.nav.small.flex-column
+    %li.nav-item
+      = link_to 'День рождения', class: 'nav-link'
+    %li.nav-item
+      = link_to 'Свидание', class: 'nav-link'
+    %li.nav-item
+      = link_to 'Просто так', class: 'nav-link'
+    %li.nav-item
+      = link_to 'Весна', class: 'nav-link'
+    %li.nav-item
+      = link_to 'Юбилей', class: 'nav-link'
+  %hr
+  %h5 Цвет
+  %ul.nav.small.flex-column
+    %li.nav-item
+      = link_to 'Белый', class: 'nav-link'
+    %li.nav-item
+      = link_to 'Красный', class: 'nav-link'
+    %li.nav-item
+      = link_to 'Желтый', class: 'nav-link'
+    %li.nav-item
+      = link_to 'Зеленый', class: 'nav-link'
+    %li.nav-item
+      = link_to 'Синий', class: 'nav-link'
+    %li.nav-item
+      = link_to 'Оранжевый', class: 'nav-link'
+    %li.nav-item
+      = link_to 'Розовый', class: 'nav-link'
+    %li.nav-item
+      = link_to 'Разноцветный', class: 'nav-link'
+  %hr
+  %h5 Тип букета
+  %ul.nav.small.flex-column
+    %li.nav-item
+      = link_to 'Классический', class: 'nav-link'
+    %li.nav-item
+      = link_to 'Авторский', class: 'nav-link'
+    %li.nav-item
+      = link_to 'В коробке', class: 'nav-link'
+    %li.nav-item
+      = link_to 'В корзине', class: 'nav-link'
+  %hr

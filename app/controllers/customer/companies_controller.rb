@@ -1,6 +1,7 @@
 class Customer::CompaniesController < Customer::CustomerController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
-
+  has_scope :color
+  has_scope :price_in
   # GET /companies
   # GET /companies.json
   def index
@@ -10,7 +11,8 @@ class Customer::CompaniesController < Customer::CustomerController
   # GET /companies/1
   # GET /companies/1.json
   def show
-    @products = @company.products
+    @params = search_params
+    @products = apply_scopes(@company.products).all
   end
 
   # GET /companies/new
@@ -68,7 +70,10 @@ class Customer::CompaniesController < Customer::CustomerController
       @company = Company.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    def search_params
+    params.permit(:color, :price_in, :type, :occasion)
+    end
+
     def company_params
       params.require(:company).permit(:name, :desc, :url)
     end

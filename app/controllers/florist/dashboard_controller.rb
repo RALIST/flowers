@@ -1,5 +1,5 @@
 class Florist::DashboardController < Florist::FloristController
   def index
-    @user = Florist.find(current_user.id)
+    @user = Florist.find(session[:user_id])
   end
 end

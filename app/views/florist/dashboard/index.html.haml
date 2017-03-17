@@ -7,19 +7,19 @@
       .col-6
         = form_for @user, url: florist_user_path(@user) do |f|
           .form-group
-            =f.label 'Имя'
+            = f.label :name,  'Имя'
             = f.text_field :name,  class: 'form-control'
           .form-group
-            =f.label 'Фамилия'
+            = f.label :last_name, 'Фамилия'
             = f.text_field :last_name, class: 'form-control'
           .form-group
-            =f.label 'Email'
+            = f.label :email, 'Email'
             = f.email_field :email, class: 'form-control'
           .form-group
-            =f.label 'Телефон'
+            = f.label :phone, 'Телефон'
             = f.phone_field :phone, class: 'form-control'
           .form-group
-            =f.label 'Пол'
+            = f.label :gender, 'Пол'
             = f.select :gender, User.genders.keys, {include_blank: true, selected: @user.gender}, class: 'form-control'
           .form-group.text-right
             = f.submit 'Обновить информацию', class: 'btn btn-success'

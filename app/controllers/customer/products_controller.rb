@@ -1,10 +1,16 @@
 class Customer::ProductsController < Customer::CustomerController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-
+  has_scope :color
+  has_scope :price_in
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @params = search_params
+    if @params.blank?
+      @products = Product.all
+    else
+      @products = apply_scopes(Product).all
+    end
   end
 
   # GET /products/1
@@ -25,7 +31,6 @@ class Customer::ProductsController < Customer::CustomerController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -61,6 +66,10 @@ class Customer::ProductsController < Customer::CustomerController
     end
   end
 
+  def search_params
+    params.permit(:color, :price_in, :type, :occasion)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
@@ -69,6 +78,6 @@ class Customer::ProductsController < Customer::CustomerController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :desc, :price, :order_count, :views_count, :references)
+      params.require(:product).permit(:name, :desc, :price, :order_count, :views_count)
     end
 end

@@ -7,5 +7,5 @@
   .row
     = render 'customer/products/products_menu'
     .col-10.card-deck
-      = render collection: @products, partial: 'thumb_product', as: :product
+      = render(collection: @products, partial: 'thumb_product', as: :product) || 'Ничего не найдено!'
 

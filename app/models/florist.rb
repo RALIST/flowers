@@ -7,7 +7,6 @@ class Florist < User
 
   default_scope {where(role: 'florist')}
 
-  before_save :set_role
 
   private
   def set_role

@@ -1,63 +1,64 @@
-.col-2
-  %h5 Дата доставки
-  .card-group
-    .col-6.card#delivery
-      = link_to '' do
-        %i.fa.fa-calendar-check-o
-        %small Сегодня
-    .col-6.card#delivery
-      = link_to '' do
-        %i.fa.fa-calendar
-        %small Выбрать дату
-  %hr
-  %h5 Цена
-  %ul.nav.small.flex-column
-    - Product::PRICE_RANGE.each do |k, v|
-      - if params[:price_in] == v
-        %li.nav-item
-          = link_to @params.except(:price_in), class: 'nav-link' do
-            %i.fa.fa-times
-            = k
-      - else
-        - unless params[:price_in]
-          = link_to k, @params.merge(price_in: v), class: 'nav-link'
+%h5 Дата доставки
+.card-group
+  .col-6.card#delivery
+    = link_to '' do
+      %i.fa.fa-calendar-check-o
+      %small Сегодня
+  .col-6.card#delivery
+    = link_to '' do
+      %i.fa.fa-calendar
+      %small Выбрать дату
+%hr
+%h5 Цена
+%ul.nav.small.flex-column
+  - Product::PRICE_RANGE.each do |k, v|
+    - if params[:price_in] == v
+      %li.nav-item
+        = link_to @params.except(:price_in), remote: true, class: 'nav-link' do
+          %i.fa.fa-times
+          = k
+    - else
+      - unless params[:price_in]
+        = link_to k, @params.merge(price_in: v),remote: true, class: 'nav-link'
 
-  %hr
-  %h5 Повод
-  %ul.nav.small.flex-column
-    %li.nav-item
-      = link_to 'День рождения', class: 'nav-link'
-    %li.nav-item
-      = link_to 'Свидание', class: 'nav-link'
-    %li.nav-item
-      = link_to 'Просто так', class: 'nav-link'
-    %li.nav-item
-      = link_to 'Весна', class: 'nav-link'
-    %li.nav-item
-      = link_to 'Юбилей', class: 'nav-link'
-  %hr
-  %h5 Цвет
-  %ul.nav.small.flex-column
-    - Color.all.each do |color|
-      - if params[:color] == color.name
+%hr
+%h5 Повод
+%ul.nav.small.flex-column
+  - Occasion.all.each do |o|
+    - if params[:occasion] == o.name
+      %li.nav-item
+        = link_to @params.except(:occasion),remote: true, class: 'nav-link' do
+          %i.fa.fa-times
+          = o.name.capitalize
+    - else
+      - unless params[:occasion]
         %li.nav-item
-          = link_to @params.except(:color), class: 'nav-link' do
-            %i.fa.fa-times
-            = color.name.capitalize
-      - else
-        - unless params[:color]
-          %li.nav-item
-            = link_to color.name.capitalize, params.permit!.merge(color: color.name), class: 'nav-link'
+          = link_to o.name.capitalize, params.permit!.merge(occasion: o.name),remote: true, class: 'nav-link'
+%hr
+%h5 Цвет
+%ul.nav.small.flex-column
+  - Color.all.each do |color|
+    - if params[:color] == color.name
+      %li.nav-item
+        = link_to @params.except(:color),remote: true, class: 'nav-link' do
+          %i.fa.fa-times
+          = color.name.capitalize
+    - else
+      - unless params[:color]
+        %li.nav-item
+          = link_to color.name.capitalize, params.permit!.merge(color: color.name),remote: true, class: 'nav-link'
 
-  %hr
-  %h5 Тип букета
-  %ul.nav.small.flex-column
-    %li.nav-item
-      = link_to 'Классический', class: 'nav-link'
-    %li.nav-item
-      = link_to 'Авторский', class: 'nav-link'
-    %li.nav-item
-      = link_to 'В коробке', class: 'nav-link'
-    %li.nav-item
-      = link_to 'В корзине', class: 'nav-link'
-  %hr
+%hr
+%h5 Тип букета
+%ul.nav.small.flex-column
+  - Type.all.each do |type|
+    - if params[:type] == type.name
+      %li.nav-item
+        = link_to @params.except(:type),remote: true, class: 'nav-link' do
+          %i.fa.fa-times
+          = type.name.capitalize
+    - else
+      - unless params[:type]
+        %li.nav-item
+          = link_to type.name.capitalize, params.permit!.merge(type: type.name),remote: true, class: 'nav-link'
+%hr

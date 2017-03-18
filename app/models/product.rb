@@ -2,8 +2,13 @@ class Product < ApplicationRecord
   belongs_to :company
   has_many :images, as: :imageable
   has_and_belongs_to_many :colors
+  has_and_belongs_to_many :types
+  has_and_belongs_to_many :occasions, autosave: true
 
-  accepts_nested_attributes_for :images
+  validates :name, :price, :images, presence: true
+
+  accepts_nested_attributes_for :images, reject_if: proc { |attributes| attributes['pic'].blank? }
+  accepts_nested_attributes_for :occasions
 
   PRICE_RANGE = {'До 1000 руб': '0-1000',
                   '1000-2000 руб.': '1000-2000',
@@ -22,6 +27,26 @@ class Product < ApplicationRecord
     end
   end
 
-  def self.type
+  def self.type(type)
+    joins(:types).where(types: {name: type})
   end
+
+  def self.occasion(occasion)
+    joins(:occasions).where(occasions: {name: occasion})
+  end
+
+  def occasion_name
+    self.occasions.each do |o|
+      return o.name
+    end
+  end
+
+  def occasion_name=(name)
+    unless name.blank?
+      name = name.strip.downcase
+      occasion = Occasion.find_or_create_by!(name: name)
+      self.occasions << occasion
+    end
+  end
+
 end

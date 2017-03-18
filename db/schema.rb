@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316150145) do
+ActiveRecord::Schema.define(version: 20170318074354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,19 @@ ActiveRecord::Schema.define(version: 20170316150145) do
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
   end
 
+  create_table "occasions", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "occasions_products", id: false, force: :cascade do |t|
+    t.integer "occasion_id"
+    t.integer "product_id"
+    t.index ["occasion_id"], name: "index_occasions_products_on_occasion_id", using: :btree
+    t.index ["product_id"], name: "index_occasions_products_on_product_id", using: :btree
+  end
+
   create_table "overall_averages", force: :cascade do |t|
     t.string   "rateable_type"
     t.integer  "rateable_id"
@@ -83,6 +96,13 @@ ActiveRecord::Schema.define(version: 20170316150145) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["company_id"], name: "index_products_on_company_id", using: :btree
+  end
+
+  create_table "products_types", id: false, force: :cascade do |t|
+    t.integer "type_id"
+    t.integer "product_id"
+    t.index ["product_id"], name: "index_products_types_on_product_id", using: :btree
+    t.index ["type_id"], name: "index_products_types_on_type_id", using: :btree
   end
 
   create_table "rates", force: :cascade do |t|
@@ -106,6 +126,12 @@ ActiveRecord::Schema.define(version: 20170316150145) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
+  end
+
+  create_table "types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

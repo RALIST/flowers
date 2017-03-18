@@ -16,12 +16,22 @@
           = i.file_field :pic, class: 'form-control'
     .col-6
       .form-group
-        Цвета
+        =f.label 'Цвета'
         %br
         = f.collection_check_boxes :color_ids, Color.all, :id, :name do |b|
           .form-check-inline
             = b.label(class: 'form-check-label') { b.check_box(class: 'form-check-input') + b.text }
-
+      .form-group
+        = f.label 'Выберите тип букета'
+        = f.collection_check_boxes :type_ids, Type.all, :id, :name do |b|
+          .form-check-inline
+            = b.label(class: 'form-check-label') { b.check_box(class: 'form-check-input') + b.text }
+      .from-group
+        = f.label 'Выберите повод или добавьте свой'
+        = f.collection_check_boxes :occasion_ids, Occasion.all, :id, :name do |b|
+          .form-check-inline
+            = b.label(class: 'form-check-label') { b.check_box(class: 'form-check-input') + b.text }
+        = f.text_field :occasion_name, class: 'form-control'
 
   .form-group.text-right
     = f.submit 'Добавить', class: 'btn btn-success'

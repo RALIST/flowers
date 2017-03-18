@@ -1,0 +1,6 @@
+$('#menu').html('<%= j render "customer/products/products_menu" %>')
+$('#products').html('<%= j render(collection: @products, partial: "customer/products/thumb_product", as: :product) || "Ничего не найдено!" %>')
+
+$(function(){
+  applyRaty();
+});

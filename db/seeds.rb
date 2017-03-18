@@ -6,7 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 colors = ["красный", "оранжевый", "желтый", "зеленый", "голубой", "синий", "фиолетовый", "белый", "черный", "разноцветный"]
+types = ['классический', "авторский", "в коробке", "в корзине"]
 
 colors.each do |color|
   Color.create!(name: color)
+end
+
+types.each do |type|
+  Type.create!(name: type)
 end

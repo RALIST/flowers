@@ -25,7 +25,7 @@ class Florist::ProductsController < Florist::FloristController
   # POST /products.json
   def create
     @company = current_user.company
-    @product = @company.products.create(product_params)
+    @product = @company.products.create!(product_params)
 
     respond_to do |format|
       if @product.save
@@ -70,6 +70,6 @@ class Florist::ProductsController < Florist::FloristController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :desc, :price, :order_count, :views_count, :references, images_attributes: [:pic], color_ids: [])
+      params.require(:product).permit(:name, :desc, :price, :order_count, :views_count, :references, :occasion_name, images_attributes: [:pic], color_ids: [], type_ids:[], occasion_ids: [])
     end
 end

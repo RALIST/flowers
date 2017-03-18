@@ -20,7 +20,7 @@ class String
     self.replace capitalize
   end
 
-  def humanize
+  def humanizer
     self.mb_chars.humanize
   end
 end

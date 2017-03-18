@@ -20,6 +20,7 @@ class Customer::UsersController < Customer::CustomerController
   end
 
   def edit
+    @user = Customer.find(session[:user_id])
   end
 
   def update
@@ -32,7 +33,7 @@ class Customer::UsersController < Customer::CustomerController
   private
 
   def user_params
-    params.require(:user).permit(:email, :phone, :name, :last_name,
+    params.require(:customer).permit(:email, :phone, :name, :last_name,
                                    :password, :password_confirmation, :gender)
   end
 end

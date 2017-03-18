@@ -1,6 +1,11 @@
+require 'userconstraint'
+
 Rails.application.routes.draw do
   post '/rate' => 'rater#create', :as => 'rate'
   root 'main#index'
+  # , constraints: NoUserRequiredConstraint.new
+  # root 'customer/products#index', constraints: CustomerConstraint.new
+  # root 'florist/dashboard#index', constraints: FloristConstraint.new
 
   scope module: 'customer' do
     root 'main#index'

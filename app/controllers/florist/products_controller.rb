@@ -70,6 +70,6 @@ class Florist::ProductsController < Florist::FloristController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :desc, :price, :order_count, :views_count, :references, :occasion_name, images_attributes: [:pic], color_ids: [], type_ids:[], occasion_ids: [])
+      params.require(:product).permit(:name, :desc, :price, :order_count, :views_count, :references, :occasion_name,:type_ids, images_attributes: [:pic], color_ids: [],  occasion_ids: [])
     end
 end

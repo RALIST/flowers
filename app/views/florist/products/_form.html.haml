@@ -11,27 +11,34 @@
         = f.label :price, 'Цена'
         = f.text_field :price, class: 'form-control'
       .form-group
-        Изображение
+        = f.label 'Изображение'
         = f.fields_for :images, Image.new do |i|
           = i.file_field :pic, class: 'form-control'
     .col-6
-      .form-group
-        =f.label 'Цвета'
-        %br
-        = f.collection_check_boxes :color_ids, Color.all, :id, :name do |b|
-          .form-check-inline
-            = b.label(class: 'form-check-label') { b.check_box(class: 'form-check-input') + b.text }
-      .form-group
+      %strong Параметры букета
+      %hr.form-group
+        = f.label 'Выберите цвет букета'
+        .row
+          = f.collection_check_boxes :color_ids, Color.all, :id, :name do |b|
+            .form-check.col-6
+              = b.check_box
+              = b.text
+      %hr.form-group
         = f.label 'Выберите тип букета'
-        = f.collection_check_boxes :type_ids, Type.all, :id, :name do |b|
-          .form-check-inline
-            = b.label(class: 'form-check-label') { b.check_box(class: 'form-check-input') + b.text }
-      .from-group
+        .row
+          = f.collection_radio_buttons :type_ids, Type.all, :id, :name do |b|
+            .form-check.col-6
+              = b.radio_button
+              = b.text
+      %hr.from-group
         = f.label 'Выберите повод или добавьте свой'
-        = f.collection_check_boxes :occasion_ids, Occasion.all, :id, :name do |b|
-          .form-check-inline
-            = b.label(class: 'form-check-label') { b.check_box(class: 'form-check-input') + b.text }
-        = f.text_field :occasion_name, class: 'form-control'
+        .row
+          = f.collection_check_boxes :occasion_ids, Occasion.all, :id, :name do |b|
+            .form-check.col-6
+              = b.check_box
+              = b.text
+      .form-group
+        = f.text_field :occasion_name, class: 'form-control', placeholder: 'Повод'
 
   .form-group.text-right
     = f.submit 'Добавить', class: 'btn btn-success'

@@ -8,7 +8,7 @@ class Florist::SessionsController < Florist::FloristController
   def create
     if user = Florist.find_by(email: params[:email])
       if @user = login(params[:email], params[:password])
-        redirect_to root_path
+        redirect_to florist_account_path
         flash[:success] = 'Вы вошли!'
       else
         flash[:danger] = 'Не удалось войти! Проверьте введенные данные'

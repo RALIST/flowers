@@ -54,7 +54,7 @@
   - Type.all.each do |type|
     - if params[:type] == type.name
       %li.nav-item
-        = link_to @params.except(:type),remote: true, class: 'nav-link' do
+        = link_to @params.except(:type), remote: true, class: 'nav-link' do
           %i.fa.fa-times
           = type.name.capitalize
     - else
@@ -62,3 +62,5 @@
         %li.nav-item
           = link_to type.name.capitalize, params.permit!.merge(type: type.name),remote: true, class: 'nav-link'
 %hr
+- if @params.any?
+  = link_to 'Очистить фильтр', @params.except(:color, :price_in, :type, :occasion), remote: true, class: 'btn btn-success'

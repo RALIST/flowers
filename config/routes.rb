@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     resources :companies, only: [:index, :show]
     resources :products, only: [:index, :show]
     resources :sessions
+    get 'cart', to: 'carts#show', as: :my_cart
+    post 'products/:id', to: 'positions#create', as: :add_to_cart
     get 'account', to: 'users#edit', as: :account
     get 'login', to: 'sessions#new', as: :login
     delete 'logout', to: 'sessions#destroy', as: :logout

@@ -30,7 +30,7 @@
               %i.fa.fa-calendar
               %small Выбрать дату
         .card-block.text-uppercase
-          = link_to 'оформить заказ', '', class: 'btn btn-success btn-lg btn-block'
+          = link_to 'оформить заказ', add_to_cart_path(@product) , method: :post, class: 'btn btn-success btn-lg btn-block'
   %hr.my-2
   .row
     .col-6

@@ -1,0 +1,6 @@
+.container.my-4
+  %h1 Букеты в корзине
+  - @cart.positions.each do |position|
+    .row
+      .col-4
+        = image_tag position.product.images.first.pic(:thumb)

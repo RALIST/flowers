@@ -9,28 +9,38 @@
           = @product.name
         .lead.text-success.text-center
           = number_to_currency(@product.price)
-        .row.card-block.justify-content-around
-          .col-4
-            = link_to 'Как есть', '', class: 'btn btn-outline-primary btn-lg btn-block'
-          .col-4
-            = link_to 'Премиум', '', class: 'btn btn-outline-primary btn-lg btn-block'
-          .col-4
-            = link_to 'Люкс', '', class: 'btn btn-outline-primary btn-lg btn-block'
-        .card-block
-          Букет будет выглядеть примерно как на фото
-        %hr
-        %h5.text-center Выберите дату доставки
-        .card-group
-          .col-6.card#delivery
-            = link_to '' do
-              %i.fa.fa-calendar-check-o
-              %small Сегодня
-          .col-6.card#delivery
-            = link_to '' do
-              %i.fa.fa-calendar
-              %small Выбрать дату
-        .card-block.text-uppercase
-          = link_to 'оформить заказ', add_to_cart_path(@product) , method: :post, class: 'btn btn-success btn-lg btn-block'
+        .card-block.justify-content-around
+          = form_tag add_to_cart_path(@product), method: :post do |f|
+            .row{data: {toggle: 'buttons'}}
+              .col-4
+                = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block' do
+                  %span Как есть
+                  = radio_button_tag :price_option, :simple, false, class: 'toggle'
+              .col-4
+                = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block' do
+                  %span Премиум
+                  = radio_button_tag :price_option, :premium, false, class: 'toggle'
+              .col-4
+                = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block' do
+                  = radio_button_tag :price_option, :lux, false, class: 'toggle'
+                  %span Люкс
+              .card-block.text-center
+                Букет будет выглядеть примерно как на фото
+              %hr
+              .col-12
+                %h5.text-center Выберите дату доставки
+                .card-group
+                  .col-6.card#delivery
+                    = link_to '' do
+                      %i.fa.fa-calendar-check-o
+                      %small Сегодня
+                  .col-6.card#delivery
+                    = link_to '' do
+                      %i.fa.fa-calendar
+                      %small Выбрать дату
+              .col-12.card-block
+                = submit_tag 'оформить заказ', class: 'btn btn-success btn-lg btn-block text-uppercase'
+
   %hr.my-2
   .row
     .col-6

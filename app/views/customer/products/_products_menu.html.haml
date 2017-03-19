@@ -62,5 +62,5 @@
         %li.nav-item
           = link_to type.name.capitalize, params.permit!.merge(type: type.name),remote: true, class: 'nav-link'
 %hr
-- if @params.any?
+- unless @params.blank?
   = link_to 'Очистить фильтр', @params.except(:color, :price_in, :type, :occasion), remote: true, class: 'btn btn-success'

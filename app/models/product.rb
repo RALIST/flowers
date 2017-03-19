@@ -12,6 +12,8 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :images, reject_if: proc { |attributes| attributes['pic'].blank? }
   accepts_nested_attributes_for :occasions
 
+  attr_reader :price_option
+
   PRICE_RANGE = {'До 1000 руб': '0-1000',
                   '1000-2000 руб.': '1000-2000',
                   '2000-3000 руб.': '2000-3000',

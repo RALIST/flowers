@@ -11,22 +11,28 @@
           = number_to_currency(@product.price)
         .card-block.justify-content-around
           = form_tag add_to_cart_path(@product), method: :post do |f|
-            .row{data: {toggle: 'buttons'}}
+            .row#buttons{data: {toggle: 'buttons'}}
               .col-4
-                = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block' do
+                = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block active', id: "first" do
                   %span Как есть
-                  = radio_button_tag :price_option, :simple, false, class: 'toggle'
+                  = radio_button_tag :price_option, :simple, true, class: 'toggle'
               .col-4
-                = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block' do
+                = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block', id: "second"  do
                   %span Премиум
                   = radio_button_tag :price_option, :premium, false, class: 'toggle'
               .col-4
-                = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block' do
+                = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block', id: "third"  do
                   = radio_button_tag :price_option, :lux, false, class: 'toggle'
                   %span Люкс
-              .card-block.text-center
-                Букет будет выглядеть примерно как на фото
+              .tabs
+                .tab.card-block.text-center#simple
+                  Букет будет выглядеть примерно как на фото
+                .tab.card-block.text-center.collapse#premium
+                  Мы добавим на 50% больше цветов
+                .tab.card-block.text-center.collapse#lux
+                  Мы добавим в 2 раза больше цветов
               %hr
+            .row
               .col-12
                 %h5.text-center Выберите дату доставки
                 .card-group
@@ -38,6 +44,7 @@
                     = link_to '' do
                       %i.fa.fa-calendar
                       %small Выбрать дату
+            .row
               .col-12.card-block
                 = submit_tag 'оформить заказ', class: 'btn btn-success btn-lg btn-block text-uppercase'
 

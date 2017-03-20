@@ -2,10 +2,7 @@ input[type='radio'].toggle {
   display: none;
 }
 
-input[type='radio'].toggle:checked + label {
-  @extend .active;
-}
-
 label.btn {
   cursor: pointer;
 }
+

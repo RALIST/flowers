@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :company
+  has_one :owner, through: :company
   has_many :images, as: :imageable
   has_many :carts, through: :positions
   has_many :positions

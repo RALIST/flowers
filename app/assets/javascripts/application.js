@@ -14,8 +14,6 @@
 //= require jquery_ujs
 //= require jquery.maskedinput
 //= require clockpicker
-//= require jquery.ui.touch-punch
-//= require jquery-ui
 //= require tether
 //= require bootstrap
 //= require jquery.raty

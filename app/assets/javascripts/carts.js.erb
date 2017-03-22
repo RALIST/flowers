@@ -17,6 +17,7 @@ $(document).on('click', '#buttons #third', function(e){
   $('#product-price-lux').show().siblings().hide();
 });
 
-$(document).on('click', '#filter', function(){
+$(document).on('click', '#filter', function(e){
+  e.preventDefault();
   $('#resp').toggle();
 })

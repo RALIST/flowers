@@ -1,10 +1,10 @@
-.container-fluid.p-0
+.container-fluid
   .shop-header.py-5.bg-inverse.text-white
     .container
       .row
-        .col-2
-          = image_tag @company.image.pic.url(:thumb), class: 'img-fluid rounded'
-        .col-5
+        #company-logo
+          = image_tag @company.image.pic.url(:thumb), class: 'img-fluid rounded img-cover'
+        #company-info
           %h3
             = @company.name
           #rate
@@ -13,12 +13,12 @@
           #rate
             Качество:
             = rating_for @company, 'flowers_quality', readonly: true
-        .col-5.text-right
+        #company-contacts.text-right.hidden-sm-down
           %h4
             Связаться
-          %p.h5
+          .h5
             + 7 3412 4614168
-          %p.h3
+          .h3
             = link_to '' do
               %i.fa.fa-vk.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Вконтакте', tabindex: "0"}
             = link_to '' do
@@ -30,8 +30,8 @@
   .shop-menu.bg-faded
     .container
       .row.mb-5
-        .col-2
-        .col-10
+        .col-2.hidden-lg-down
+        #company-nav
           %ul.nav.nav-tabs.pt-2.h5
             %li.nav-item
               = link_to '#products', data: {toggle: 'tab'},  class: 'nav-link active' do
@@ -43,16 +43,18 @@
   .shop-content
     .container
       .row
-        .col-2#menu
+        .col-2.hidden-md-down#menu
           = render 'customer/products/products_menu'
-        .col-10.tab-content
+        .col-lg-10.col-sm-12.col-xs-12.col-md-12.tab-content
           .row.tab-pane.active#products
+            .col-12.hidden-md-up
+              = render 'layouts/resp_menu'
             .card-deck
               = render collection:  @products, partial: 'customer/products/thumb_product', as: :product
           .row.tab-pane.collapse#comments
             .card-deck
               = render @comments
-            .col-6
+            #write-review
               %h4 Пожалуйста, оцените компанию
               - if current_user
                 Качество букета:

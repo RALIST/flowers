@@ -3,7 +3,7 @@
 }
 #navbar {
   .navbar-nav {
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(lg) {
       li {
         padding-left: 2rem;
       }

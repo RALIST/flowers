@@ -18,7 +18,7 @@
 #delivery {
   line-height: 0.7rem;
   text-align: center;
-  padding: 15px 15px;
+  // padding: 15px 15px;
   margin-bottom: 0;
   @include make-col-xs(6);
   @include make-col-sm(6);
@@ -27,11 +27,16 @@
   @include make-col-xl(6);
   i {
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    // margin-bottom: 0.5rem;
   }
-  &:hover {
-    border: 1px solid transparentize($brand-primary, 0.65)
+  .card {
+    margin-bottom: 0;
+    height: 100%;
+    padding: 0.5rem 0;
   }
+  // &:hover {
+  //   border: 1px solid transparentize($brand-primary, 0.65)
+  // }
 }
 
 .card {

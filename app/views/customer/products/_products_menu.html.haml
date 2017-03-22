@@ -1,13 +1,15 @@
 %h5 Дата доставки
-.row.card-group
-  .card#delivery
-    = link_to '' do
-      %i.fa.fa-calendar-check-o
-      %small Сегодня
-  .card#delivery
-    = link_to '' do
-      %i.fa.fa-calendar
-      %small Выбрать дату
+.row.card-deck
+  #delivery.pr-0
+    .card
+      = link_to '' do
+        %i.fa.fa-calendar-check-o
+        .small.align-self-center Сегодня
+  #delivery.pl-0
+    .card
+      = link_to '' do
+        %i.fa.fa-calendar
+        .small Выбрать дату
 %hr
 %h5 Цена
 %ul.nav.small.flex-lg-column.flex-sm-row.flex-wrap.justify-content-between#product-menu
@@ -63,4 +65,4 @@
           = link_to type.name.capitalize, params.permit!.merge(type: type.name),remote: true, class: 'nav-link'
 %hr
 - unless @params.blank?
-  = link_to 'Очистить фильтр', @params.except(:color, :price_in, :type, :occasion), remote: true, class: 'btn btn-success'
+  = link_to 'Очистить фильтр', @params.except(:color, :price_in, :type, :occasion), remote: true, class: 'btn btn-success btn-block my-2'

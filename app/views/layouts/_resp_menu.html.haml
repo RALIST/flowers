@@ -1,3 +1,6 @@
-.container-fluid.hidden-md-up
-  #resp-menu
-    / = render 'customer/products/products_menu'
+%span.my-2.btn.btn-primary.btn-block{id: 'filter'}
+  Фильтр
+  .small
+    Всего #{@products.count} букетов
+#resp
+  = render 'customer/products/products_menu'

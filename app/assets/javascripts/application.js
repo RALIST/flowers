@@ -18,6 +18,7 @@
 //= require bootstrap
 //= require jquery.raty
 //= require ratyrate
+//= require jquery-ui
 //= require_tree .
 
 $(function () {
@@ -25,3 +26,9 @@ $(function () {
 });
 
 
+
+// $(document).ready(function(){
+//   $('#filter').click(function(){
+//     $('#resp_menu').hide();
+//   })
+// })

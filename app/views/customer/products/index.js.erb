@@ -1,4 +1,6 @@
-$('#menu').html('<%= j render "customer/products/products_menu" %>')
+$('#menu').html('<%= j render "customer/products/products_menu" %>');
+$('#resp').html('<%= j render "customer/products/products_menu" %>');
+$('#filter .small').html('<%= @products.count %> букетов найдено' )
 $('#products').html('<%= j render(collection: @products, partial: "thumb_product", as: :product) || "Ничего не найдено!" %>')
 $('body,html').animate({
         scrollTop : 100

@@ -7,6 +7,8 @@
   .row
     .col-2#menu.hidden-lg-down
       = render 'customer/products/products_menu'
+    .col-12.hidden-md-up
+      = render 'layouts/resp_menu'
     .col-md-12.col-sm-12.col-lg-10.card-deck.align-items-start
       .row#products
         = render(collection: @products, partial: 'thumb_product', as: :product) || 'Ничего не найдено!'

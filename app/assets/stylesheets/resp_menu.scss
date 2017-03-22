@@ -1,4 +1,10 @@
-#resp-menu {
+#resp {
   display: none;
-  position: fixed;
+  position: relative;
+  min-width: 100%;
+  height: 100%;
+  top: 0;
+  background: #ffffff;
+  overflow: scroll;
 }
+

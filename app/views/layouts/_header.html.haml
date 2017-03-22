@@ -10,10 +10,14 @@
         #navbar.collapse.navbar-collapse.text-left.justify-content-end
           %ul.navbar-nav.align-items-center
             - unless current_user
-              %li.nav-item
-                = link_to 'Вход/Регистрация', login_path, class: 'nav-link btn btn-outline-success'
-              %li.nav-item
-                = link_to 'Я флорист', florist_login_path, class: 'nav-link btn btn-outline-success'
+              .hidden-lg-down
+                = link_to 'Вход/Регистрация', login_path, class: 'nav-link btn btn-outline-success d-inline'
+                = link_to 'Я флорист', florist_signin_path, class: 'nav-link btn btn-outline-success d-inline'
+              .hidden-md-up.align-self-start
+                %li.nav-item
+                  = link_to 'Вход/Регистрация', login_path, class: 'nav-link'
+                %li.nav-item
+                  = link_to 'Я флорист', florist_signin_path, class: 'nav-link'
             - else
               %li.nav-item.dropdown.hidden-md-down
                 %a.dropdown-toggle{data:{toggle: 'dropdown'}}
@@ -56,7 +60,7 @@
                     = link_to logout_path, method: :delete do
                       %i.fa.fa-sign-out
                       Выйти
-              .hidden-md-up
+              .hidden-md-up.align-self-start
                 %li.nav-item
                   - case current_user.role
                   - when 'customer'
@@ -72,7 +76,7 @@
                     = link_to my_cart_path, class: 'nav-link' do
                       %i.fa.fa-shopping-cart
                       Корзина
-              %li.nav-item
+              %li.nav-item.align-self-start
                 = link_to 'Помощь', '', class: 'nav-link'
-              %li.nav-item
+              %li.nav-item.align-self-start
                 = link_to 'Выйти', logout_path, method: :delete, class: 'nav-link'

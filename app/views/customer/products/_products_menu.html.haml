@@ -1,16 +1,16 @@
 %h5 Дата доставки
-.card-group
-  .col-6.card#delivery
+.row.card-group
+  .card#delivery
     = link_to '' do
       %i.fa.fa-calendar-check-o
       %small Сегодня
-  .col-6.card#delivery
+  .card#delivery
     = link_to '' do
       %i.fa.fa-calendar
       %small Выбрать дату
 %hr
 %h5 Цена
-%ul.nav.small.flex-column
+%ul.nav.small.flex-lg-column.flex-sm-row.flex-wrap.justify-content-between#product-menu
   - Product::PRICE_RANGE.each do |k, v|
     - if params[:price_in] == v
       %li.nav-item
@@ -23,7 +23,7 @@
 
 %hr
 %h5 Повод
-%ul.nav.small.flex-column
+%ul.nav.small.flex-lg-column.flex-sm-row.flex-wrap.justify-content-between#product-menu
   - Occasion.all.each do |o|
     - if params[:occasion] == o.name
       %li.nav-item
@@ -36,7 +36,7 @@
           = link_to o.name.capitalize, params.permit!.merge(occasion: o.name),remote: true, class: 'nav-link'
 %hr
 %h5 Цвет
-%ul.nav.small.flex-column
+%ul.nav.small.flex-lg-column.flex-sm-row.flex-wrap.justify-content-between#product-menu
   - Color.all.each do |color|
     - if params[:color] == color.name
       %li.nav-item
@@ -50,7 +50,7 @@
 
 %hr
 %h5 Тип букета
-%ul.nav.small.flex-column
+%ul.nav.small.flex-lg-column.flex-sm-row.flex-wrap.justify-content-between#product-menu
   - Type.all.each do |type|
     - if params[:type] == type.name
       %li.nav-item

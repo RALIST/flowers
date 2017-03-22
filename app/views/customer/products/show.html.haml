@@ -70,7 +70,7 @@
           Дизайн
       .row
         #company-img
-          = image_tag @product.company.image.pic.url(:small), class: 'img-fluid rounded-circle', style: 'height: 100%;'
+          = image_tag @product.company.image.pic.url(:small), class: 'img-fluid rounded-circle', style: 'width: 100px; height: 100px;'
         #company-desc
           %h4
             = @product.company.name

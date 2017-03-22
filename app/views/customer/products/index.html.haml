@@ -5,9 +5,9 @@
     Цветы на любой вкус и бюджет от лучших флористов
   %hr.my-4
   .row
-    .col-2#menu.hidden-md-down
+    .col-2#menu.hidden-lg-down
       = render 'customer/products/products_menu'
-    .col.col-md-12.col-sm-12.col-lg-10.card-deck.align-items-start
+    .col-md-12.col-sm-12.col-lg-auto.card-deck.align-items-start
       .row#products
         = render(collection: @products, partial: 'thumb_product', as: :product) || 'Ничего не найдено!'
 

@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :current_cart
+  before_action :current_cart, :search_params
+
+
 
 
   private
@@ -20,5 +22,8 @@ class ApplicationController < ActionController::Base
       @cart = Cart.create
       session[:cart_id] = @cart.id
       @cart
+    end
+    def search_params
+      params.permit(:color, :price_in, :type, :occasion)
     end
 end

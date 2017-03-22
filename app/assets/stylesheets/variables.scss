@@ -55,9 +55,23 @@ h1, h2, h3, h4, h5, a {
 //     }
 //   }
 
-@include media-breakpoint-down(lg) {
-  .img-cover {
-    width: 100%;
-    height: auto;
-  }
-}
+
+$grid-breakpoints: (
+  // Extra small screen / phone
+  xs: 0,
+  // Small screen / phone
+  sm: 568px,
+  // Medium screen / tablet
+  md: 768px,
+  // Large screen / desktop
+  lg: 992px,
+  // Extra large screen / wide desktop
+  xl: 1200px
+);
+
+$container-max-widths: (
+  sm: 680px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+);

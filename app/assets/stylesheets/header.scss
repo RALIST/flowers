@@ -3,9 +3,20 @@
 }
 #navbar {
   .navbar-nav {
-    li {
-      padding-left: 2rem;
+    @include media-breakpoint-up(md) {
+      li {
+        padding-left: 2rem;
+      }
     }
+    @include media-breakpoint-down(lg){
+      margin-top: 1rem;
+      li {
+        font-size: 1.3rem;
+        // margin: 0.5rem 0;
+      }
+    }
+
+
   }
   .dropdown-toggle {
     cursor: pointer;
@@ -18,13 +29,17 @@
 
 
 
-.navbar-toggler  i {
-  font-size: 3rem;
+.navbar-toggler{
+  i {
+    font-size: 2rem;
+  }
+
 }
+
 
 .navbar-brand {
   img {
-    max-height: 4rem;
+    max-height: 3rem ;
   }
 }
 

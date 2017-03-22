@@ -1,19 +1,21 @@
 #header
   .container
     .row.align-items-center
-      %nav.navbar.col-12.justify-content-between.flex-row.align-items-center
-        .navbar-brand.flex-row
-          = link_to root_path do
+      %nav.navbar.navbar-toggleable-md.col-12.no-gutters
+        .d-flex.flex-row.justify-content-between
+          = link_to products_path, class: 'navbar-brand' do
             = image_tag 'logo.png', class: 'img-fluid'
-        #navbar.d-flex.flex-row
-          %ul.navbar-nav.flex-row
+          %button.navbar-toggler.align-self-center{data: {toggle: "collapse", target: "#navbar"} }
+            %i.fa.fa-bars
+        #navbar.collapse.navbar-collapse.text-left.justify-content-end
+          %ul.navbar-nav.align-items-center
             - unless current_user
               %li.nav-item
                 = link_to 'Вход/Регистрация', login_path, class: 'nav-link btn btn-outline-success'
               %li.nav-item
                 = link_to 'Я флорист', florist_login_path, class: 'nav-link btn btn-outline-success'
             - else
-              %li.nav-item.dropdown
+              %li.nav-item.dropdown.hidden-md-down
                 %a.dropdown-toggle{data:{toggle: 'dropdown'}}
                   Мой аккаунт
                 .dropdown-menu
@@ -54,7 +56,23 @@
                     = link_to logout_path, method: :delete do
                       %i.fa.fa-sign-out
                       Выйти
+              .hidden-md-up
+                %li.nav-item
+                  - case current_user.role
+                  - when 'customer'
+                    = link_to account_path, class: 'nav-link' do
+                      %i.fa.fa-user-o
+                      Личная информация
+                  -when 'florist'
+                    = link_to florist_account_path, class: 'nav-link' do
+                      %i.fa.fa-user-o
+                      Личный кабинет
+                - unless @cart.positions.blank?
+                  %li.nav-item
+                    = link_to my_cart_path, class: 'nav-link' do
+                      %i.fa.fa-shopping-cart
+                      Корзина
               %li.nav-item
-                = link_to 'Помощь'
+                = link_to 'Помощь', '', class: 'nav-link'
               %li.nav-item
-                = link_to 'Выйти', logout_path, method: :delete
+                = link_to 'Выйти', logout_path, method: :delete, class: 'nav-link'

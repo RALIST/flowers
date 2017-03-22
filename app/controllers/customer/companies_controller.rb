@@ -11,6 +11,7 @@ class Customer::CompaniesController < Customer::CustomerController
   # GET /companies/1
   # GET /companies/1.json
   def show
+    @comments = @company.comments
     @params = search_params
     @products = apply_scopes(@company.products).all
   end

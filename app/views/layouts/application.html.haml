@@ -2,18 +2,22 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
     %title Flowers
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
   %body
-    #flash.col-6
-      - flash.each do |key, message|
-        %div{class: "alert alert-#{key} alert-dismissible in text-center", style: 'z-index: 999;'}
-          = sanitize(message)
-          %button{type: "button",  class: "close", style: 'font-size: 2em;' ,  data:{dismiss: "alert"} }
-            %span
-              &times;
-    = render 'layouts/header'
-    = yield
-    = render 'layouts/subscribe' unless @disable_subscribe
+    .wrapper
+      #flash.col-6
+        - flash.each do |key, message|
+          %div{class: "alert alert-#{key} alert-dismissible in text-center", style: 'z-index: 999;'}
+            = sanitize(message)
+            %button{type: "button",  class: "close", style: 'font-size: 2em;' ,  data:{dismiss: "alert"} }
+              %span
+                &times;
+      %a#return-to-top
+        %i.fa.fa-chevron-up
+      = render 'layouts/header'
+      = yield
+  = render 'layouts/subscribe' unless @disable_subscribe

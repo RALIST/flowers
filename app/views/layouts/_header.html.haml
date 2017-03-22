@@ -24,7 +24,7 @@
                     - else
                       = current_user.email
                     .dropdown-divider
-                  - if @cart.positions
+                  - unless @cart.positions.blank?
                     .dropdown-item
                       = link_to my_cart_path do
                         %i.fa.fa-shopping-cart

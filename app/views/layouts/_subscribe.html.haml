@@ -1,9 +1,12 @@
-.container-fluid.bg-brand
+.container-fluid.bg-brand.hidden-lg-down
   .container
-    .row.align-items-center
-      .col-6
-        %h1.h4.my-4 Подпишитесь на нашу рассылку!
-      .col-6
-        .form-inline.my-4.d-flex.justify-content-start
-          = email_field_tag :email,'', class: 'form-control', placeholder: 'Ваш email'
-          = submit_tag 'Подписаться', class: 'btn btn-outline-white ml-3'
+    .row.align-items-center.justify-content-between.py-4
+      .col-lg-auto.col-md-12.col-sm-12
+        %h1.h4 Подпишитесь на нашу рассылку!
+      .col-lg-auto.col-md-12
+        .form-inline.d-flex.justify-content-start
+          .row
+            .col-6
+              = email_field_tag :email,'', class: 'form-control', placeholder: 'Ваш email'
+            .col-6
+              = submit_tag 'Подписаться', class: 'btn btn-outline-white ml-3'

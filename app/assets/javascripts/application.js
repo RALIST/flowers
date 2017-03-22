@@ -12,11 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require tether
 //= require jquery.maskedinput
 //= require clockpicker
-//= require jquery-ui
 //= require jquery.ui.touch-punch
+//= require jquery-ui
+//= require tether
 //= require bootstrap
 //= require jquery.raty
 //= require ratyrate

@@ -1,6 +1,8 @@
 $('#menu').html('<%= j render "customer/products/products_menu" %>')
-$('#products').html('<%= j render(collection: @products, partial: "customer/products/thumb_product", as: :product) || "Ничего не найдено!" %>')
-
+$('#products .card-deck').html('<%= j render(collection: @products, partial: "customer/products/thumb_product", as: :product) || "Ничего не найдено!" %>')
+$('body,html').animate({
+        scrollTop : 300
+    }, 500);
 $(function(){
   applyRaty();
 });

@@ -12,11 +12,21 @@ Rails.application.routes.draw do
     resources :users
     resources :florists
     resources :customers
-    resources :companies, only: [:index, :show]
+    resources :companies, only: [:index, :show] do
+      resources :comments
+    end
+    resources :comments do
+      resources :comments
+    end
     resources :products, only: [:index, :show]
     resources :sessions
+    resources :cards, only: :create
+    resources :addresses
     get 'cart', to: 'carts#show', as: :my_cart
+    resources :checkouts
     post 'products/:id', to: 'positions#create', as: :add_to_cart
+    post 'cart', to: 'positions#create', as: :add_balloons_to_cart
+    delete 'cart/:id', to: 'positions#destroy', as: :remove_from_cart
     get 'account', to: 'users#edit', as: :account
     get 'login', to: 'sessions#new', as: :login
     delete 'logout', to: 'sessions#destroy', as: :logout

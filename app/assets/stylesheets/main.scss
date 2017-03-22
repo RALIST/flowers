@@ -5,8 +5,8 @@
 
 }
 #main {
-  @include make-col-xs(10);
-  @include make-col-sm(10);
+  @include make-col-xs(12);
+  @include make-col-sm(12);
   @include make-col-md(8);
   @include make-col-lg(5);
   @include make-col-xl(5);
@@ -14,7 +14,7 @@
   padding: 1rem;
   h1 {
       margin-bottom: 1rem;
-      font-size: 1.5rem;
+      font-size: 1.5em;
     }
 }
 

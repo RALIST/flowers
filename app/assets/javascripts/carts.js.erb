@@ -2,14 +2,17 @@
 $(document).on('click', '#buttons #first', function(e){
   e.preventDefault();
   $('#simple').show().siblings().hide();
+  $('#product-price-simple').show().siblings().hide();
 });
 
 $(document).on('click', '#buttons #second', function(e){
   e.preventDefault();
   $('#premium').show().siblings().hide();
+  $('#product-price-premium').show().siblings().hide();
 });
 
 $(document).on('click', '#buttons #third', function(e){
   e.preventDefault();
   $('#lux').show().siblings().hide();
+  $('#product-price-lux').show().siblings().hide();
 });

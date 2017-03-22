@@ -1,0 +1,29 @@
+.col-4
+  .card
+    .card-block
+      %strong
+        = comment.user.full_name
+      #rate
+        = total_rating_for_user @company, comment.user, readonly: true
+      %em.small
+        = Russian::strftime(comment.created_at.in_time_zone, "%d %B %Y")
+
+      %hr.my-2
+      .card-text
+        = comment.desc
+      - unless comment.comments.blank?
+        %p.lead
+          .small
+            %strong
+              Ответ компании:
+          - comment.comments.each do |c|
+            = c.desc
+      - if current_user && @company.owner == Florist.find(current_user.id)
+        .card-block
+          = link_to 'Ответить', '#', data:{toggle: 'collapse', target:" #answer#{comment.id}"}, class: 'btn btn-sm'
+          .collapse{id: "answer#{comment.id}"}
+            = form_for [comment, Comment.new]do |f|
+              .form-group
+                = f.text_area :desc, class: 'form-control'
+              .form-group
+                = f.submit 'Ответить', class: 'btn btn-sm btn-success'

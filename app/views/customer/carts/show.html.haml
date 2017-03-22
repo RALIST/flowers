@@ -1,6 +1,67 @@
 .container.my-4
-  %h1 Букеты в корзине
-  - @cart.products.each do |product|
-    .row
-      .col-4
-        = image_tag product.images.first.pic(:thumb)
+  .row
+    .col-12.d-flex.justify-content-between
+      %h2
+        Букеты в корзине
+      .text-center
+        = link_to new_checkout_path, class: 'btn btn-success' do
+          Продолжить
+          %small
+            (#{number_to_currency(@cart.total_price, precision: 0)})
+  %hr
+  .row
+    .col-4.border-right
+      - @cart.products.each do |product|
+        .row
+          .col-12
+            %h4
+              = product.name
+              %small
+                = link_to  remove_from_cart_path(@cart.positions.where(product: product).first), method: :delete do
+                  %i.fa.fa-times
+            .lead.text-success
+              / - case @cart.positions.where(product: product).first.price_type
+              / - when 'simple'
+              /   = number_to_currency(product.price)
+              / - when 'premium'
+              /   = number_to_currency(product.premium_price)
+              / - when 'lux'
+              /   = number_to_currency(product.lux_price)
+
+            .text-center
+              = image_tag product.images.first.pic(:thumb), class: 'img-fluid'
+            %hr
+      .row
+        -@cart.balloons.each do |b|
+          .col-6
+            .card
+              .card-block
+                .card-image-top
+                  = image_tag b.image.pic.url(:small), class: 'img-fluid' if b.image
+                .card-text.small
+                  = b.desc
+                  = link_to  remove_from_cart_path(@cart.positions.where(balloon: b).first), method: :delete do
+                    %i.fa.fa-times
+                  .text-success
+                    = number_to_currency(b.price)
+    .col-8
+      %h4
+        Добавьте к букету
+      %h5
+        Воздушные шары
+      %hr
+      .row.card-deck
+        - @balloons.each do |b|
+          .col-4
+            .card
+              .card-block
+                .card-image-top
+                  = image_tag b.image.pic.url(:small), class: 'img-fluid' if b.image
+                .card-text.small
+                  = b.desc
+                  .text-success
+                    = number_to_currency(b.price)
+                  = link_to 'В корзину', add_balloons_to_cart_path(balloon_id: b.id), class: 'btn btn-success btn-sm', method: :post
+
+
+

@@ -1,46 +1,54 @@
 .container#account
   .row
-    .col-6
+    #product-img
       - @product.images.each do |i|
         = image_tag i.pic.url(:large), class: 'img-fluid'
-    .col-6
+    #product-desc
       .card
         %h4.card-title.text-center
           = @product.name
         .lead.text-success.text-center
-          = number_to_currency(@product.price)
+          #product-price-simple
+            = number_to_currency(@product.price)
+          #product-price-premium.collapse
+            = number_to_currency(@product.premium_price)
+          #product-price-lux.collapse
+            = number_to_currency(@product.lux_price)
+
         .card-block.justify-content-around
           = form_tag add_to_cart_path(@product), method: :post do |f|
             .row#buttons{data: {toggle: 'buttons'}}
-              .col-4
+              #first-btn
                 = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block active', id: "first" do
                   %span Как есть
                   = radio_button_tag :price_option, :simple, true, class: 'toggle'
-              .col-4
-                = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block', id: "second"  do
-                  %span Премиум
-                  = radio_button_tag :price_option, :premium, false, class: 'toggle'
-              .col-4
-                = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block', id: "third"  do
-                  = radio_button_tag :price_option, :lux, false, class: 'toggle'
-                  %span Люкс
+              - if @product.premium_price
+                #second-btn
+                  = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block', id: "second"  do
+                    %span Премиум
+                    = radio_button_tag :price_option, :premium, false, class: 'toggle'
+              - if @product.lux_price
+                #third-btn
+                  = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block', id: "third"  do
+                    = radio_button_tag :price_option, :lux, false, class: 'toggle'
+                    %span Люкс
               .tabs
                 .tab.card-block.text-center#simple
                   Букет будет выглядеть примерно как на фото
                 .tab.card-block.text-center.collapse#premium
-                  Мы добавим на 50% больше цветов
+                  = @product.premium_desc
                 .tab.card-block.text-center.collapse#lux
-                  Мы добавим в 2 раза больше цветов
+                  = @product.lux_desc
               %hr
             .row
               .col-12
                 %h5.text-center Выберите дату доставки
                 .card-group
-                  .col-6.card#delivery
+                  .col-lg-6.col-sm-5.col-xs-5.card#delivery
                     = link_to '' do
                       %i.fa.fa-calendar-check-o
                       %small Сегодня
-                  .col-6.card#delivery
+                  .col-lg-6.col-sm-5.col-xs-5.card#delivery
                     = link_to '' do
                       %i.fa.fa-calendar
                       %small Выбрать дату
@@ -50,20 +58,20 @@
 
   %hr.my-2
   .row
-    .col-6
+    .col-lg-6.col-sm-12.col-xs-12
       .my-2
         %strong
           Описание букета
       %P
         = @product.desc
-    .col-6
+    .col-lg-6.col-sm-12.col-xs-12
       .my-2
         %strong
           Дизайн
       .row
-        .col-3
+        #company-img
           = image_tag @product.company.image.pic.url(:small), class: 'img-fluid rounded-circle', style: 'height: 100%;'
-        .col-9
+        #company-desc
           %h4
             = @product.company.name
             .small{style: 'font-size: 0.6em;'}

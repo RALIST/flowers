@@ -7,9 +7,21 @@
       .form-group
         = f.label :desc, 'Описание'
         = f.text_area :desc, rows: 5,  class: 'form-control'
-      .form-group
-        = f.label :price, 'Цена'
-        = f.text_field :price, class: 'form-control'
+      .row
+        .form-group.col-4
+          = f.label :price, 'Стандарт'
+          = f.text_field :price, placeholder: 'Цена', class: 'form-control form-control-sm'
+        .form-group.col-4
+          = f.label :price, 'Премиум'
+          = f.text_field :premium_price, placeholder: 'Цена', class: 'form-control form-control-sm'
+        .form-group.col-4
+          = f.label :price, 'Люкс'
+          = f.text_field :lux_price, placeholder: 'Цена', class: 'form-control form-control-sm'
+      .row
+        .form-group.col-6
+          = f.text_area :premium_desc, placeholder: 'Что в ходит в премиум букет',  class: 'form-control form-control-sm'
+        .form-group.col-6
+          = f.text_area :lux_desc, placeholder: 'Что входит в люкс букет', class: 'form-control form-control-sm'
       .form-group
         = f.label 'Изображение'
         = f.fields_for :images, Image.new do |i|

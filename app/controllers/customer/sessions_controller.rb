@@ -16,7 +16,7 @@ class Customer::SessionsController < Customer::CustomerController
 
   def destroy
     logout
-    redirect_to root_path
+    redirect_back fallback_location: root_path
     flash[:success] =  'Вы вышли'
   end
 end

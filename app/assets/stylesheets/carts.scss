@@ -6,3 +6,16 @@ label.btn {
   cursor: pointer;
 }
 
+#checkout-menu {
+  width: 100%;
+  background: $brand-success;
+  color: white;
+  .nav-link {
+    color: white;
+    border-radius: 0;
+  }
+  .active {
+    color: $brand-success;
+    border: 1px solid $brand-success;
+  }
+}

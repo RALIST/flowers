@@ -1,0 +1,58 @@
+= form_for @checkout do |f|
+  .container.my-4
+    .row
+      .col-12
+        %ul.nav.nav-tabs.justify-content-center.nav-fill#checkout-menu
+          %li.nav-item
+            = link_to '#card', data:{toggle: 'tab'}, class: 'nav-link active' do
+              Открытка
+              %i.fa.fa-chevron-right.ml-2
+          %li.nav-item
+            = link_to '#address', data:{toggle: 'tab'}, class: 'nav-link' do
+              Информация для доставки
+              %i.fa.fa-chevron-right.ml-2
+          %li.nav-item
+            .nav-link Итог
+    .row.my-5
+      .tab-content.col-8.border-right
+        .tab-pane#card.active
+          %h3
+            Добавьте к букету персональную открытку
+            %hr.my-1
+          .small
+            Пропустите этот шаг, если вам не нужна открытка
+          .my-3
+            = render partial: 'card_form', locals: {f: f}
+        .tab-pane#address
+          %h3
+            Информация для доставки
+            %hr.my-1
+          .my-3
+            .row
+              .col-12
+                %ul.nav.nav-pills.small
+                  %li.nav-item
+                    = link_to '#self', data:{toggle: 'tab'}, class: 'nav-link' do
+                      Самовывоз
+                  %li.nav-item
+                    = link_to '#send', data:{toggle: 'tab'}, class: 'nav-link active' do
+                      Доставка
+            .row
+              .tab-content.col-12
+                .tab-pane.active#send
+                  .row
+                    .col-6#sender
+                      .my-2
+                        %strong
+                          Данные отправителя
+                      = render partial: 'user_form', locals: {f: f}
+                    .col-6#reciever
+                      .my-2
+                        %strong
+                          Данные получателя
+                      = render partial: 'user_form', locals: {f: f}
+                      = render partial: 'address_form', locals: {f: f}
+                .tab-pane.collapse#self
+                  .row
+                    .my-2.col-6
+                      = render partial: 'user_form', locals: {f: f}

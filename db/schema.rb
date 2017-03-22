@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318125950) do
+ActiveRecord::Schema.define(version: 20170321090528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "country"
+    t.string   "city",       default: "Ижевск"
+    t.string   "street"
+    t.string   "house"
+    t.string   "flat"
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
+  end
 
   create_table "average_caches", force: :cascade do |t|
     t.integer  "rater_id"
@@ -24,11 +37,35 @@ ActiveRecord::Schema.define(version: 20170318125950) do
     t.datetime "updated_at"
   end
 
+  create_table "balloons", force: :cascade do |t|
+    t.float    "price"
+    t.text     "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.text     "desc"
+    t.integer  "checkout_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["checkout_id"], name: "index_cards_on_checkout_id", using: :btree
+  end
+
   create_table "carts", force: :cascade do |t|
     t.integer  "customer_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["customer_id"], name: "index_carts_on_customer_id", using: :btree
+  end
+
+  create_table "checkouts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_checkouts_on_cart_id", using: :btree
+    t.index ["user_id"], name: "index_checkouts_on_user_id", using: :btree
   end
 
   create_table "colors", force: :cascade do |t|
@@ -42,6 +79,18 @@ ActiveRecord::Schema.define(version: 20170318125950) do
     t.integer "product_id"
     t.index ["color_id"], name: "index_colors_products_on_color_id", using: :btree
     t.index ["product_id"], name: "index_colors_products_on_product_id", using: :btree
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "title"
+    t.text     "desc"
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
+    t.integer  "user_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
   create_table "companies", force: :cascade do |t|
@@ -91,6 +140,9 @@ ActiveRecord::Schema.define(version: 20170318125950) do
     t.integer  "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "balloon_id"
+    t.string   "price_type"
+    t.index ["balloon_id"], name: "index_positions_on_balloon_id", using: :btree
     t.index ["cart_id"], name: "index_positions_on_cart_id", using: :btree
     t.index ["product_id"], name: "index_positions_on_product_id", using: :btree
   end
@@ -102,8 +154,12 @@ ActiveRecord::Schema.define(version: 20170318125950) do
     t.integer  "order_count"
     t.integer  "views_count"
     t.integer  "company_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.float    "premium_price"
+    t.text     "premium_desc"
+    t.float    "lux_price"
+    t.text     "lux_desc"
     t.index ["company_id"], name: "index_products_on_company_id", using: :btree
   end
 
@@ -160,4 +216,7 @@ ActiveRecord::Schema.define(version: 20170318125950) do
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
   end
 
+  add_foreign_key "addresses", "users"
+  add_foreign_key "comments", "users"
+  add_foreign_key "positions", "balloons"
 end

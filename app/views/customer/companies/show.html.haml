@@ -8,14 +8,11 @@
           %h3
             = @company.name
           #rate
-            Скорость:
+            Доставка:
             = rating_for @company, 'delivery_speed', readonly: true
           #rate
             Качество:
             = rating_for @company, 'flowers_quality', readonly: true
-          #rate
-            Цены:
-            = rating_for @company, 'price', readonly: true
         .col-5.text-right
           %h4
             Связаться
@@ -37,14 +34,40 @@
         .col-10
           %ul.nav.nav-tabs.pt-2.h5
             %li.nav-item
-              = link_to 'Каталог', '', class: 'nav-link'
+              = link_to '#products', data: {toggle: 'tab'},  class: 'nav-link active' do
+                Каталог
             %li.nav-item
-              = link_to 'Отзывы', '', class: 'nav-link'
+              = link_to '#comments', data: {toggle: 'tab'}, class: 'nav-link' do
+                Отзывы (#{@company.comments.count})
+
   .shop-content
     .container
       .row
         .col-2#menu
           = render 'customer/products/products_menu'
-        .col-10.card-deck#products
-          = render collection:  @products, partial: 'customer/products/thumb_product', as: :product
-
+        .col-10.tab-content
+          .row.tab-pane.active#products
+            .card-deck
+              = render collection:  @products, partial: 'customer/products/thumb_product', as: :product
+          .row.tab-pane.collapse#comments
+            .card-deck
+              = render @comments
+            .col-6
+              %h4 Пожалуйста, оцените компанию
+              - if current_user
+                Качество букета:
+                #rate
+                  = rating_for_user @company,current_user, 'flowers_quality', disable_after_rate: false
+                %br
+                Качество доставки:
+                #rate
+                  = rating_for_user @company, current_user, 'delivery_speed',disable_after_rate: false, cancel: false
+                = form_for [@company, Comment.new] do |f|
+                  .form-group
+                    = f.label :desc, 'Ваш отзыв'
+                    = f.text_area :desc, rows: 5, class: 'form-control'
+                  .form-group.text-right
+                    = f.submit 'Оставить отзыв', class: 'btn btn-success'
+              - else
+                Чтобы оставлять комментарии необходимо
+                = link_to 'войти', login_path

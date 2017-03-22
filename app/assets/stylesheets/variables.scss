@@ -45,4 +45,19 @@ h1, h2, h3, h4, h5, a {
   }
 }
 
+// @include media-breakpoint-down(md) {
+//     .container {
+//       width: 100% !important;
+//       padding: 0;
+//     }
+//     html {
+//       font-size: 2rem !important;
+//     }
+//   }
 
+@include media-breakpoint-down(lg) {
+  .img-cover {
+    width: 100%;
+    height: auto;
+  }
+}

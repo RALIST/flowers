@@ -1,6 +1,6 @@
 $('#menu').html('<%= j render "customer/products/products_menu" %>');
 $('#resp').html('<%= j render "customer/products/products_menu" %>');
-$('#filter .small').html('<%= @products.count %> букетов найдено' ).css('color',  'yellow').css('font-weight', 'bold').animate();
+$('#filter .small').html('<%= @products.count %> букетов найдено' ).css('color',  'yellow').css('font-weight', 'bold').animate({fontSize: '18px'});
 $('#products').html('<%= j render(collection: @products, partial: "thumb_product", as: :product) || "Ничего не найдено!" %>');
 $('#resp').toggle();
 $('body,html').animate({

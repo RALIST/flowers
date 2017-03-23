@@ -3,6 +3,7 @@ $('#resp').html('<%= j render "customer/products/products_menu" %>');
 $('#product-list').html('<%= j render(collection: @products, partial: "customer/products/thumb_product", as: :product) || "Ничего не найдено!" %>')
 $('#filter .small').html('<%= @products.count %> букетов найдено' ).css('color',  'yellow').css('font-weight', 'bold').animate({fontSize: '18px'});
 $('#resp').toggle();
+$('#count').html('<%= @products.count %> букетов найдено')
 $('body,html').animate({
         scrollTop : 300
     }, 500);

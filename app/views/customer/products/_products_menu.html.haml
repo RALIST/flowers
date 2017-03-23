@@ -1,15 +1,11 @@
-%h5 Дата доставки
-.row.card-deck
-  #delivery.pr-0
-    .card
-      = link_to '' do
+
+.row
+  #delivery
+    = link_to '' do
+      .card
         %i.fa.fa-calendar-check-o
-        .small.align-self-center Сегодня
-  #delivery.pl-0
-    .card
-      = link_to '' do
-        %i.fa.fa-calendar
-        .small Выбрать дату
+        %br
+        Доставка сегодня
 %hr
 %h5 Цена
 %ul.nav.small.flex-lg-column.flex-sm-row.flex-wrap.justify-content-between#product-menu

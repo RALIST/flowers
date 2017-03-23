@@ -3,6 +3,7 @@
     .card-block
       %strong
         = comment.user.full_name
+      %br
       #rate
         = total_rating_for_user @company, comment.user, readonly: true
       %em.small

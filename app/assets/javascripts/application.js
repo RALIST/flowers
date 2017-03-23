@@ -15,10 +15,10 @@
 //= require jquery.maskedinput
 //= require clockpicker
 //= require tether
-//= require bootstrap
 //= require jquery.raty
 //= require ratyrate
 //= require jquery-ui
+//= require bootstrap
 //= require_tree .
 
 $(function () {

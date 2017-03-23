@@ -1,11 +1,18 @@
-
 .row
   #delivery
-    = link_to '' do
-      .card
-        %i.fa.fa-calendar-check-o
-        %br
-        Доставка сегодня
+    - if params[:date].blank?
+      = link_to @params.merge(date: :today), remote: true do
+        .card
+          %i.fa.fa-calendar-check-o
+          %br
+          Доставка сегодня
+    - else
+      = link_to @params.except(:date), remote: true do
+        .card
+          %i.fa.fa-times
+          %br
+          .reset
+            Доставка сегодня
 %hr
 %h5 Цена
 %ul.nav.small.flex-lg-column.flex-sm-row.flex-wrap.justify-content-between#product-menu
@@ -14,7 +21,8 @@
       %li.nav-item
         = link_to @params.except(:price_in), remote: true, class: 'nav-link' do
           %i.fa.fa-times
-          = k
+          .reset
+            = k
     - else
       - unless params[:price_in]
         = link_to k, @params.merge(price_in: v),remote: true, class: 'nav-link'
@@ -27,11 +35,12 @@
       %li.nav-item
         = link_to @params.except(:occasion),remote: true, class: 'nav-link' do
           %i.fa.fa-times
-          = o.name.capitalize
+          .reset
+            = o.name.capitalize
     - else
       - unless params[:occasion]
         %li.nav-item
-          = link_to o.name.capitalize, params.permit!.merge(occasion: o.name),remote: true, class: 'nav-link'
+          = link_to o.name.capitalize, params.permit!.merge(occasion: o.name), remote: true, class: 'nav-link'
 %hr
 %h5 Цвет
 %ul.nav.small.flex-lg-column.flex-sm-row.flex-wrap.justify-content-between#product-menu
@@ -40,7 +49,8 @@
       %li.nav-item
         = link_to @params.except(:color),remote: true, class: 'nav-link' do
           %i.fa.fa-times
-          = color.name.capitalize
+          .reset
+            = color.name.capitalize
     - else
       - unless params[:color]
         %li.nav-item
@@ -54,11 +64,12 @@
       %li.nav-item
         = link_to @params.except(:type), remote: true, class: 'nav-link' do
           %i.fa.fa-times
-          = type.name.capitalize
+          .reset
+            = type.name.capitalize
     - else
       - unless params[:type]
         %li.nav-item
           = link_to type.name.capitalize, params.permit!.merge(type: type.name),remote: true, class: 'nav-link'
 %hr
 - unless @params.blank?
-  = link_to 'Очистить фильтр', @params.except(:color, :price_in, :type, :occasion), remote: true, class: 'btn btn-success btn-block my-2'
+  = link_to 'Очистить фильтр', @params.except(:color, :price_in, :type, :occasion, :date), remote: true, class: 'btn btn-success btn-block my-2'

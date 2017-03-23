@@ -69,7 +69,7 @@ class Customer::ProductsController < Customer::CustomerController
   end
 
   def search_params
-    params.permit(:color, :price_in, :type, :occasion)
+    params.permit(:color, :price_in, :type, :occasion, :date)
   end
 
   private

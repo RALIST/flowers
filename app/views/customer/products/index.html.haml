@@ -11,7 +11,7 @@
       = render 'layouts/resp_menu'
     .col-md-12.col-sm-12.col-lg-10
       .row
-        .col-12.lead.mb-2#count
+        .col-12.lead.mb-2.hidden-lg-down#count
           Всего #{@products.count} букетов
       .row.card-deck#products
         = render(collection: @products, partial: 'thumb_product', as: :product) || 'Ничего не найдено!'

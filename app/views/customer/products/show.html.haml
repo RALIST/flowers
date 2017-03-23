@@ -40,19 +40,6 @@
                 .tab.card-block.text-center.collapse#lux
                   = @product.lux_desc
               %hr
-
-            %h5.text-center Выберите дату доставки
-            .row.card-group
-              #delivery.p-0
-                .card
-                  = link_to '' do
-                    %i.fa.fa-calendar-check-o
-                    .small Сегодня
-              #delivery.p-0
-                .card
-                  = link_to '' do
-                    %i.fa.fa-calendar
-                    .small Выбрать дату
             .row
               .col-12.card-block
                 = submit_tag 'оформить заказ', class: 'btn btn-success btn-lg btn-block text-uppercase'

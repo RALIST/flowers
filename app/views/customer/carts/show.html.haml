@@ -1,16 +1,15 @@
 .container.my-4
   .row
-    .col-12.d-flex.justify-content-between
-      %h2
-        Букеты в корзине
-      .text-center
-        = link_to new_checkout_path, class: 'btn btn-success' do
-          Продолжить
-          %small
-            (#{number_to_currency(@cart.total_price, precision: 0)})
+    %h2.col-lg-6.col-sm-12
+      Букеты в корзине
+    .col-lg-6.col-sm-12.text-right.hidden-lg-down
+      = link_to new_checkout_path, class: 'btn btn-success' do
+        Продолжить
+        %small
+          (#{number_to_currency(@cart.total_price, precision: 0)})
   %hr
   .row
-    .col-4.border-right
+    .cart-products.border-right
       - @cart.products.each do |product|
         .row
           .col-12
@@ -31,37 +30,38 @@
             .text-center
               = image_tag product.images.first.pic(:thumb), class: 'img-fluid'
             %hr
-      .row
-        -@cart.balloons.each do |b|
-          .col-6
-            .card
-              .card-block
-                .card-image-top
-                  = image_tag b.image.pic.url(:small), class: 'img-fluid' if b.image
+        .row.no-gutters
+          -@cart.balloons.each do |b|
+            .sub-products.card.mb-0
+              .card-block.p-2
                 .card-text.small
                   = b.desc
                   = link_to  remove_from_cart_path(@cart.positions.where(balloon: b).first), method: :delete do
                     %i.fa.fa-times
                   .text-success
                     = number_to_currency(b.price)
-    .col-8
+    .add-sub-products
       %h4
         Добавьте к букету
       %h5
         Воздушные шары
       %hr
-      .row.card-deck
+      .row.no-gutters
         - @balloons.each do |b|
-          .col-4
-            .card
-              .card-block
-                .card-image-top
-                  = image_tag b.image.pic.url(:small), class: 'img-fluid' if b.image
-                .card-text.small
-                  = b.desc
-                  .text-success
-                    = number_to_currency(b.price)
-                  = link_to 'В корзину', add_balloons_to_cart_path(balloon_id: b.id), class: 'btn btn-success btn-sm', method: :post
-
+          .balloons.card.mb-0
+            .card-block.p-2.align-items-end
+              .card-image-top
+                = image_tag b.image.pic.url(:small), class: 'img-fluid' if b.image
+              .card-text.small
+                = b.desc
+                .text-success
+                  = number_to_currency(b.price)
+                = link_to 'В корзину', add_balloons_to_cart_path(balloon_id: b.id), class: 'btn btn-success btn-sm', method: :post
+  .row.mt-4.hidden-md-up
+    .col-12
+      = link_to new_checkout_path, class: 'btn btn-success btn-lg btn-block' do
+        Продолжить
+        %small
+          (#{number_to_currency(@cart.total_price, precision: 0)})
 
 

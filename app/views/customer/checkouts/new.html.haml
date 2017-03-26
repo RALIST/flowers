@@ -5,25 +5,17 @@
         %ul.nav.nav-tabs.justify-content-center.nav-fill#checkout-menu
           %li.nav-item
             = link_to '#card', data:{toggle: 'tab'}, class: 'nav-link active' do
-              Открытка
+              Адрес
               %i.fa.fa-chevron-right.ml-2
           %li.nav-item
             = link_to '#address', data:{toggle: 'tab'}, class: 'nav-link' do
-              Информация для доставки
+              Опции
               %i.fa.fa-chevron-right.ml-2
           %li.nav-item
             .nav-link Итог
-    .row.my-5
-      .tab-content.col-8.border-right
+    .row.my-3
+      .tab-content.col-sm-12.col-xs-12.col-lg-8
         .tab-pane#card.active
-          %h3
-            Добавьте к букету персональную открытку
-            %hr.my-1
-          .small
-            Пропустите этот шаг, если вам не нужна открытка
-          .my-3
-            = render partial: 'card_form', locals: {f: f}
-        .tab-pane#address
           %h3
             Информация для доставки
             %hr.my-1
@@ -32,27 +24,35 @@
               .col-12
                 %ul.nav.nav-pills.small
                   %li.nav-item
-                    = link_to '#self', data:{toggle: 'tab'}, class: 'nav-link' do
-                      Самовывоз
+                    %label.btn.btn-outline-primary.btn-sm.active{data: {toggle: 'tab', target: '#send'}}
+                      %span Доставка
+                      = radio_button_tag :delivery, :send, true, class: 'toggle'
                   %li.nav-item
-                    = link_to '#send', data:{toggle: 'tab'}, class: 'nav-link active' do
-                      Доставка
+                    %label.btn.btn-outline-primary.btn-sm.ml-1{data: {toggle: 'tab', target: '#self'}}
+                      %span Самовывоз
+                      = radio_button_tag :delivery, :self, true, class: 'toggle'
             .row
               .tab-content.col-12
                 .tab-pane.active#send
                   .row
-                    .col-6#sender
+                    .col-12#sender
                       .my-2
                         %strong
-                          Данные отправителя
+                          Отправитель
                       = render partial: 'user_form', locals: {f: f}
-                    .col-6#reciever
+                    .col-12#reciever
                       .my-2
                         %strong
-                          Данные получателя
-                      = render partial: 'user_form', locals: {f: f}
+                          Получатель
+                      = render partial: 'receiver_form', locals: {f: f}
                       = render partial: 'address_form', locals: {f: f}
                 .tab-pane.collapse#self
                   .row
-                    .my-2.col-6
+                    .my-2.col-12
                       = render partial: 'user_form', locals: {f: f}
+        .tab-pane#address
+          .h5.d-flex.align-items-center#card-toggle{data:{toggle: 'collapse', target: '#card-form'}, style: 'cursor: pointer;'}
+            %i.fa.fa-toggle-off
+            Добавить открытку
+          .my-3.collapse#card-form
+            = render partial: 'card_form', locals: {f: f}

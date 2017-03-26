@@ -21,3 +21,38 @@ $(document).on('click', '#filter', function(e){
   e.preventDefault();
   $('#resp').toggle();
 })
+
+$(document).on('click', '#card-toggle', function(){
+  $('#card-toggle i.fa').toggleClass('fa-toggle-on fa-toggle-off');
+});
+
+$(document).ready(function() {
+  $(document).on('click', '#slider input', function(){
+    if(this.checked){
+      $('#address-form').hide(200);
+    }else{
+      $('#address-form').show(200);
+    }
+  })
+});
+
+$(document).ready(function(){
+  var checkbox = $('#slider input');
+  var street = $('#address-form #checkout_address_street');
+  var house = $('#checkout_address_house');
+  street.prop('required', true)
+  house.prop('required', true)
+
+  $(document).on('click', '#slider input', function(){
+    if (this.checked){
+      street.removeProp('required')
+      house.removeProp('required')
+    }else{
+      street.prop('required', true)
+      house.prop('required', true)
+    }
+  });
+
+})
+
+

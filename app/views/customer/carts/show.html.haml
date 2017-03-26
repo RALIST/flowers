@@ -30,16 +30,16 @@
             .text-center
               = image_tag product.images.first.pic(:thumb), class: 'img-fluid'
             %hr
-        .row.no-gutters
-          -@cart.balloons.each do |b|
-            .sub-products.card.mb-0
-              .card-block.p-2
-                .card-text.small
-                  = b.desc
-                  = link_to  remove_from_cart_path(@cart.positions.where(balloon: b).first), method: :delete do
-                    %i.fa.fa-times
-                  .text-success
-                    = number_to_currency(b.price)
+      .row.no-gutters
+        -@cart.balloons.each do |b|
+          .sub-products.card.mb-0
+            .card-block.p-2
+              .card-text.small
+                = b.desc
+                = link_to  remove_from_cart_path(@cart.positions.where(balloon: b).first), method: :delete do
+                  %i.fa.fa-times
+                .text-success
+                  = number_to_currency(b.price)
     .add-sub-products
       %h4
         Добавьте к букету

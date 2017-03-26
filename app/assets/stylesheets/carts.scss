@@ -51,3 +51,38 @@ label.btn {
   @include make-col-lg(4);
   @include make-col-xl(4);
 }
+
+#card-toggle {
+  i {
+    font-size: 1.5em;
+    margin-right: 0.5rem;
+    color: $brand-primary;
+  }
+}
+
+#slider {
+  cursor: pointer;
+  input {
+    display: none;
+  }
+  label {
+    -webkit-transition: 1s;
+    transition: 1s;
+    cursor: pointer;
+  }
+  label:before {
+    font-family: FontAwesome;
+    content: "\f204";
+    -webkit-transition: 1s;
+    transition: 1s;
+    font-size: 1.8rem;
+    color: $brand-primary;
+    margin-right: 0.5rem;
+  }
+  input:checked + label:before {
+    content: "\f205";
+    -webkit-transition: 1s;
+    transition: 1s;
+  }
+
+}

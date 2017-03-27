@@ -36,9 +36,12 @@ $(function () {
 
 $(document).ready(function(){
   $('#datepicker').datepicker({
-    format: 'd MM',
+    format: 'd MM, DD',
     autoclose: true,
     language: 'ru',
-    startDate: new Date()
+    startDate: new Date(),
+    maxViewMode: 1,
+    todayBtn: 'linked',
+    todayHighlight: true
   })
 })

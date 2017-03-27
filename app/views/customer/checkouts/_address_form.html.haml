@@ -1,11 +1,11 @@
 #address-form
-  = f.fields_for @address do |a|
+  = f.fields_for :address do |a|
     .form-group
       / = a.label :street, 'Улица'
-      = a.text_field :street, class: 'form-control', placeholder: 'Улица', required: true
+      = a.text_field :street, class: 'form-control', placeholder: 'Улица'
     .form-group
       / = a.label :house, 'Дом'
-      = a.text_field :house, class: 'form-control', placeholder: 'Дом', required: true
+      = a.text_field :house, class: 'form-control', placeholder: 'Дом'
     .form-group
       / = a.label :flat, 'Квартира'
       = a.text_field :flat, class: 'form-control', placeholder: 'Квартира'

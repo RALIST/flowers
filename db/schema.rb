@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326055838) do
+ActiveRecord::Schema.define(version: 20170327104445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,12 +60,21 @@ ActiveRecord::Schema.define(version: 20170326055838) do
   end
 
   create_table "checkouts", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "cart_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "sender_id"
+    t.integer  "receiver_id"
+    t.integer  "address_id"
+    t.string   "order_date"
+    t.string   "order_time"
+    t.string   "delivery"
+    t.integer  "card_id"
+    t.index ["address_id"], name: "index_checkouts_on_address_id", using: :btree
+    t.index ["card_id"], name: "index_checkouts_on_card_id", using: :btree
     t.index ["cart_id"], name: "index_checkouts_on_cart_id", using: :btree
-    t.index ["user_id"], name: "index_checkouts_on_user_id", using: :btree
+    t.index ["receiver_id"], name: "index_checkouts_on_receiver_id", using: :btree
+    t.index ["sender_id"], name: "index_checkouts_on_sender_id", using: :btree
   end
 
   create_table "colors", force: :cascade do |t|

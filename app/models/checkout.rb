@@ -1,10 +1,13 @@
 class Checkout < ApplicationRecord
   belongs_to :cart
-  has_one :card
-  has_one :address
-  has_one :sender
-  has_one :receiver
+  belongs_to :card
+  belongs_to :address
+  belongs_to :sender
+  belongs_to :receiver
 
-  accepts_nested_attributes_for :card, :address, :sender, :receiver
-  attr_reader :dont_call, :order_date, :order_time
+  accepts_nested_attributes_for :card
+  accepts_nested_attributes_for :sender
+  accepts_nested_attributes_for :receiver
+  accepts_nested_attributes_for :address
+  attr_accessor :dont_call, :call_receiver
 end

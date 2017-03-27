@@ -36,12 +36,18 @@ $(document).ready(function() {
   })
 });
 
+
+
 $(document).ready(function(){
   var checkbox = $('#slider input');
-  var street = $('#address-form #checkout_address_street');
-  var house = $('#checkout_address_house');
+  var street = $('#address-form #checkout_address_attributes_street');
+  var house = $('#checkout_address_attributes_house');
   street.prop('required', true)
   house.prop('required', true)
+  $('#checkout_receiver_attributes_name').prop('required', true);
+  $('#checkout_receiver_attributes_phone').prop('required', true);
+  $('#checkout_sender_attributes_name').prop('required', true);
+  $('#checkout_sender_attributes_phone').prop('required', true);
 
   $(document).on('click', '#slider input', function(){
     if (this.checked){
@@ -64,4 +70,20 @@ $(document).ready(function() {
       $('#info').hide();
     }
   })
+});
+
+$(document).on('click', 'input#checkout_delivery_self', function(){
+  $(this).closest('label').tab('show');
+  $('#address-form #checkout_address_attributes_street').removeProp('required');
+  $('#checkout_address_attributes_house').removeProp('required');
+  $('#checkout_receiver_attributes_name').removeProp('required');
+  $('#checkout_receiver_attributes_phone').removeProp('required');
+});
+
+$(document).on('click', 'input#checkout_delivery_send', function(){
+  $(this).closest('label').tab('show');
+  $('#address-form #checkout_address_attributes_street').prop('required', true);
+  $('#checkout_address_attributes_house').prop('required', true);
+  $('#checkout_receiver_attributes_name').prop('required', true);
+  $('#checkout_receiver_attributes_phone').prop('required', true);
 });

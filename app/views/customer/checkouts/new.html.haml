@@ -1,4 +1,4 @@
-= form_for @checkout do |f|
+= form_for @checkout, method: :post do |f|
   .container.my-4
     .row
       .col-12
@@ -24,13 +24,13 @@
               .col-12
                 %ul.nav.nav-pills.small
                   %li.nav-item
-                    %label.btn.btn-outline-primary.btn-sm.active{data: {toggle: 'tab', target: '#send'}}
+                    = f.label :delivery_send,  class: 'btn btn-outline-primary btn-sm active', id: '#delivery_method', data: {target: '#send'} do
                       %span Доставка
-                      = radio_button_tag :delivery, :send, true, class: 'toggle'
+                      = f.radio_button :delivery, :send, class: 'toggle', checked: true
                   %li.nav-item
-                    %label.btn.btn-outline-primary.btn-sm.ml-1{data: {toggle: 'tab', target: '#self'}}
+                    = f.label :delivery_self, class: 'btn btn-outline-primary btn-sm ml-1', id: '#delivery_method', data: {target: '#self'} do
                       %span Самовывоз
-                      = radio_button_tag :delivery, :self, true, class: 'toggle'
+                      = f.radio_button :delivery, :self, class: 'toggle'
             .row
               .tab-content.col-12
                 .tab-pane.active#send
@@ -49,7 +49,7 @@
                 .tab-pane.collapse#self
                   .row
                     .my-2.col-12
-                      = render partial: 'user_form', locals: {f: f}
+                      / = render partial: 'user_form', locals: {f: f}
             .row
               .h5.col-12 Дата и время
               .form-group.col-12
@@ -64,3 +64,4 @@
             Добавить открытку
           .my-3.collapse#card-form
             = render partial: 'card_form', locals: {f: f}
+        = f.submit

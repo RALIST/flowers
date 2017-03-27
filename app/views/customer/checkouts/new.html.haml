@@ -55,7 +55,7 @@
               .form-group.col-12
                 .row.align-items-center.justify-content-between
                   .col-6
-                    = f.date_field :order_date, min: Date.today, value: Date.today, class: 'form-control'
+                    = f.text_field :order_date, class: 'form-control', id: 'datepicker'
                   .col-6.text-center.pl-0
                     = f.time_select :order_time, {ignore_date: true, minute_step: 10}, {class: 'form-control', style: 'max-width: 45%; display: inline;'}
         .tab-pane#address

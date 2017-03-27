@@ -48,6 +48,7 @@ gem 'rack-canonical-host'
 gem 'bootstrap-will_paginate'
 gem 'ratyrate'
 gem 'has_scope'
+gem 'bootstrap-datepicker-rails'
 
 # group :production do
 #   gem 'rails_12factor'

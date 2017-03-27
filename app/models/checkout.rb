@@ -6,4 +6,5 @@ class Checkout < ApplicationRecord
   has_one :receiver
 
   accepts_nested_attributes_for :card, :address, :sender, :receiver
+  attr_reader :dont_call, :order_date, :order_time
 end

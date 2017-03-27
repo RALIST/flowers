@@ -9,5 +9,12 @@
     .form-group
       / = a.label :flat, 'Квартира'
       = a.text_field :flat, class: 'form-control', placeholder: 'Квартира'
+  .row
+    .form-group.col-12#slider_call
+      = f.check_box :dont_call
+      = f.label :dont_call, 'Не звонить получателю', class: 'd-flex align-items-center'
+      .small#info{style: 'display: none;'}
+        Курьер привезет букет по указанному адресу. Если получателя по указанному адресу не будет, курьер ожидает 15 минут и букет возвращается в салон.
+
 
 

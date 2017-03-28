@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327104445) do
+ActiveRecord::Schema.define(version: 20170328121941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(version: 20170327104445) do
 
   create_table "checkouts", force: :cascade do |t|
     t.integer  "cart_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "sender_id"
     t.integer  "receiver_id"
     t.integer  "address_id"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(version: 20170327104445) do
     t.string   "order_time"
     t.string   "delivery"
     t.integer  "card_id"
+    t.boolean  "call_receiver"
+    t.boolean  "dont_call"
     t.index ["address_id"], name: "index_checkouts_on_address_id", using: :btree
     t.index ["card_id"], name: "index_checkouts_on_card_id", using: :btree
     t.index ["cart_id"], name: "index_checkouts_on_cart_id", using: :btree
@@ -136,6 +138,16 @@ ActiveRecord::Schema.define(version: 20170327104445) do
     t.index ["product_id"], name: "index_occasions_products_on_product_id", using: :btree
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer  "checkout_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.float    "total"
+    t.index ["checkout_id"], name: "index_orders_on_checkout_id", using: :btree
+    t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
+  end
+
   create_table "overall_averages", force: :cascade do |t|
     t.string   "rateable_type"
     t.integer  "rateable_id"
@@ -151,8 +163,10 @@ ActiveRecord::Schema.define(version: 20170327104445) do
     t.datetime "updated_at", null: false
     t.integer  "balloon_id"
     t.string   "price_type"
+    t.integer  "order_id"
     t.index ["balloon_id"], name: "index_positions_on_balloon_id", using: :btree
     t.index ["cart_id"], name: "index_positions_on_cart_id", using: :btree
+    t.index ["order_id"], name: "index_positions_on_order_id", using: :btree
     t.index ["product_id"], name: "index_positions_on_product_id", using: :btree
   end
 

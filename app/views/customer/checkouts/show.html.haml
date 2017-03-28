@@ -1,0 +1,45 @@
+.container.my-4
+  .row
+    .col-12
+      %ul.nav.nav-tabs.justify-content-center.nav-fill#checkout-menu
+        %li.nav-item
+          = link_to '#card', data:{toggle: 'tab'}, class: 'nav-link disabled' do
+            Адрес
+            %i.fa.fa-chevron-right.ml-2
+        %li.nav-item
+          = link_to '#address', data:{toggle: 'tab'}, class: 'nav-link disabled', id: 'options' do
+            Опции
+            %i.fa.fa-chevron-right.ml-2
+        %li.nav-item
+          .nav-link.active Итог
+  .row
+    .col-12
+      %h1.my-2 Ваш заказ
+      - @checkout.cart.positions.each do |p|
+        = p.product.name
+        %br
+        = image_tag p.product.images.first.pic(:small)
+        - case @checkout.delivery
+        - when 'self'
+          Вы хотите забрать готовый букет по адресу:
+          %strong
+            = p.product.company.name
+          Он будет готов к
+          %strong
+            = @checkout.order_date
+            = @checkout.order_time
+        - when 'send'
+          - if @checkout.receiver
+            Доставить для
+            = @checkout.receiver.name
+            = @checkout.receiver.phone
+          - if @checkout.call_receiver
+            Мы позвоним получателю и уточним адрес доставки.
+          - else
+            по адресу:
+            = @checkout.address.street
+            = @checkout.address.house
+            = @checkout.address.flat if @checkout.address.flat
+
+      .lead Если мы все поняли правильно, нажмите "Отправить заказ" и мы отправим заявку флористу. Он свяжется с вами в ближайшее время для уточнения деталей.
+    = button_to 'Отправить заказ', create_order_path, class: 'btn btn-success btn-lg'

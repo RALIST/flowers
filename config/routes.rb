@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     resources :sessions
     resources :cards, only: :create
     resources :addresses
+    # resources :orders, only: :create
+    post 'checkouts/:id', to: 'orders#create', as: :create_order
     get 'cart', to: 'carts#show', as: :my_cart
     resources :checkouts
     post 'products/:id', to: 'positions#create', as: :add_to_cart

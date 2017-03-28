@@ -9,5 +9,5 @@ class Checkout < ApplicationRecord
   accepts_nested_attributes_for :sender
   accepts_nested_attributes_for :receiver
   accepts_nested_attributes_for :address
-  attr_accessor :dont_call, :call_receiver
+
 end

@@ -1,36 +1,46 @@
-.col-6
-  = form_for [:florist, @company] do |f|
-    - if @company.errors.any?
-      #error_explanation
-        %h2= "#{pluralize(@company.errors.count, "error")} prohibited this company from being saved:"
-        %ul
-          - @company.errors.full_messages.each do |msg|
-            %li= msg
 
-    .form-group
-      = f.label :name, 'Название'
-      = f.text_field :name, class: 'form-control'
-    .form-group
-      = f.label :desc, 'Описание'
-      = f.text_area :desc, rows: 5, class: 'form-control'
-    .form-group
-      = f.label :url, 'Ссылка на сайт'
-      = f.text_field :url, class: 'form-control'
-    .from-group
-      = f.label 'Часы работы'
-      %br
-      С
-      = f.time_select :opened_at,{ignore_date: true, minute_step: 30}, {class: 'form-control', style: 'max-width: 20%; display: inline;'}
-      до
-      = f.time_select :closed_at, {ignore_date: true, minute_step: 30}, {class: 'form-control', style: 'max-width: 20%; display: inline;'}
-    .from-group
-      = f.label 'Адрес магазина'
-      = f.fields_for :address do |af|
-        = af.text_field :street, class: 'form-control', placeholder: 'Улица'
-        = af.text_field :house, class: 'form-control', placeholder: 'Дом'
-        = af.text_field :flat, class: 'form-control', placeholder: 'Офис'
-    .form-control
-      = f.fields_for :image, Image.new do |i|
-        = i.file_field :pic
-    .form-group.text-right
-      = f.submit 'Добавить', class: 'btn btn-success'
+= form_for [:florist, @company] do |f|
+  - if @company.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@company.errors.count, "error")} prohibited this company from being saved:"
+      %ul
+        - @company.errors.full_messages.each do |msg|
+          %li= msg
+  .row
+    .col-6
+      .form-group
+        = f.label :name, 'Название'
+        = f.text_field :name, class: 'form-control'
+      .form-group
+        = f.label :desc, 'Описание'
+        = f.text_area :desc, rows: 3, class: 'form-control'
+      .form-group
+        = f.label 'Адрес магазина'
+        = f.fields_for :address do |af|
+          = af.text_field :street, class: 'form-control', placeholder: 'Улица'
+          = af.text_field :house, class: 'form-control', placeholder: 'Дом'
+          = af.text_field :flat, class: 'form-control', placeholder: 'Офис'
+      .form-group
+        = f.label 'Часы работы'
+        %br
+        = f.time_select :opened_at,{ignore_date: true, minute_step: 30}, {class: 'form-control', style: 'max-width: 20%; display: inline;'}
+        %span -
+        = f.time_select :closed_at, {ignore_date: true, minute_step: 30}, {class: 'form-control', style: 'max-width: 20%; display: inline;'}
+
+    .col-6
+      .form-group
+        = f.label 'Логотип'
+        = f.fields_for :image, Image.new do |i|
+          = i.file_field :pic, class: 'form-control'
+      .form-group
+        = f.label :vk_url, 'Ссылка на группу ВК'
+        = f.text_field :vk_url, class: 'form-control'
+      .form-group
+        = f.label :fb_url, 'Ссылка на страницу ФБ'
+        = f.text_field :fb_url, class: 'form-control'
+      .form-group
+        = f.label :insta_url, 'Ссылка на Instagram'
+        = f.text_field :insta_url, class: 'form-control'
+
+  .form-group.text-right
+    = f.submit 'Добавить', class: 'btn btn-success'

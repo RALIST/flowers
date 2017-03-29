@@ -37,7 +37,9 @@
                     .col-6
                       Самовывоз:
                     %strong.col-6.text-right
-                      = p.company.name
+                      = p.company.address.street
+                      = p.company.address.house
+                      = p.company.address.flat if p.company.address.flat
                 - when 'send'
                   - if @checkout.receiver
                     .row

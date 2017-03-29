@@ -24,6 +24,10 @@ class Product < ApplicationRecord
                   '4500-8000 руб': '4500-8000',
                   '8000-15000 руб.': '8000-15000'}
 
+  def to_param
+    [id, self.name.parameterize].join('-')
+  end
+
   def self.color(color)
     joins(:colors).where(colors: {name: color}).distinct
   end
@@ -45,7 +49,7 @@ class Product < ApplicationRecord
 
   def set_occasion
     unless self.occasions.include?(@occasion)
-      self.occasions << @occasion
+      self.occasions << @occasion if @occasion
     end
   end
 

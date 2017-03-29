@@ -13,18 +13,24 @@
           #rate
             Качество:
             = rating_for @company, 'flowers_quality', readonly: true
+          %br
+          - if @company.closed_at && @company.opened_at
+            = @company.opened_interval
         #company-contacts.text-right.hidden-sm-down
           %h4
             Связаться
           .h5
             + 7 3412 4614168
           .h3
-            = link_to '' do
-              %i.fa.fa-vk.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Вконтакте', tabindex: "0"}
-            = link_to '' do
-              %i.fa.fa-instagram.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Instagram', tabindex: "0"}
-            = link_to '' do
-              %i.fa.fa-facebook-official.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Facebook', tabindex: "0"}
+            - if @company.vk_url
+              = link_to '' do
+                %i.fa.fa-vk.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Вконтакте', tabindex: "0"}
+            - if @company.insta_url
+              = link_to '' do
+                %i.fa.fa-instagram.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Instagram', tabindex: "0"}
+            - if @company.fb_url
+              = link_to '' do
+                %i.fa.fa-facebook-official.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Facebook', tabindex: "0"}
             = link_to '' do
               %i.fa.fa-globe.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Сайт флориста', tabindex: "0"}
   .shop-menu.bg-faded

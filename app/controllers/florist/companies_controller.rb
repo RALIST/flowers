@@ -16,6 +16,7 @@ class Florist::CompaniesController < Florist::FloristController
   def new
     unless current_user.company
       @company = Company.new
+      @company.build_address
     else
       redirect_to florist_companies_path
       flash[:danger] = 'Вы уже зарегистрировали компанию'
@@ -59,7 +60,7 @@ class Florist::CompaniesController < Florist::FloristController
   def destroy
     @company.destroy
     respond_to do |format|
-      format.html { redirect_to companies_url, notice: 'Company was successfully destroyed.' }
+      format.html { redirect_to florist_account_path, notice: 'Company was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -72,6 +73,6 @@ class Florist::CompaniesController < Florist::FloristController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:name, :desc, :url, :owner_id, image_attributes:[:pic])
+      params.require(:company).permit(:name, :desc, :url, :owner_id, :closed_at, :opened_at, image_attributes:[:pic], address_attributes:[:street, :house, :flat])
     end
 end

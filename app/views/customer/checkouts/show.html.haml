@@ -63,7 +63,7 @@
                     Дата:
                   %strong.col-8.text-right
                     #{Russian::strftime(Time.zone.parse(@checkout.order_date), '%d %B (%A)')}, #{@checkout.order_time.strftime('примерно в %H:%M')}
-                -if @checkout.card.desc
+                -if @checkout.card.desc.present?
                   %hr.my-1
                   %i.fa.fa-check
                   Добавить открытку

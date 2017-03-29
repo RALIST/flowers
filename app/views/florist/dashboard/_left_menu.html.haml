@@ -14,11 +14,12 @@
         %i.fa.fa-shopping-bag
         Мой магазин
     %hr.my-3
-    %li.nav-item
-      = link_to florist_products_path, class: 'd-flex align-items-center' do
-        %i.fa.fa-asterisk
-        Букеты
-    %hr.my-3
+    -if current_user.company
+      %li.nav-item
+        = link_to florist_products_path, class: 'd-flex align-items-center' do
+          %i.fa.fa-asterisk
+          Букеты
+      %hr.my-3
     %li.nav-item
       = link_to '#', class: 'd-flex align-items-center' do
         %i.fa.fa-history

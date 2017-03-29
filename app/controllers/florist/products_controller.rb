@@ -4,7 +4,7 @@ class Florist::ProductsController < Florist::FloristController
   # GET /products
   # GET /products.json
   def index
-    @products = current_user.company.products.all
+    @products = current_user.company.products.all if current_user.company
   end
 
   # GET /products/1

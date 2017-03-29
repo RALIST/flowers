@@ -66,4 +66,8 @@
             Добавить открытку
           .my-3.collapse#card-form
             = render partial: 'card_form', locals: {f: f}
-          = f.submit 'Продолжить', class: 'btn btn-success btn-lg'
+          .form-group
+            = f.label :special, 'Пожелания к флористу или курьеру'
+            = f.text_area :special, rows: 5, class: 'form-control'
+          .form-group
+            = f.submit 'Продолжить', class: 'btn btn-success btn-lg'

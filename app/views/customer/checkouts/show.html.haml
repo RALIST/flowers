@@ -33,9 +33,11 @@
               .card-block.text-justify
                 - case @checkout.delivery
                 - when 'self'
-                  Вы заберете букет сами по адресу:
-                  %strong
-                    = p.company.name
+                  .row
+                    .col-6
+                      Самовывоз:
+                    %strong.col-6.text-right
+                      = p.company.name
                 - when 'send'
                   - if @checkout.receiver
                     .row

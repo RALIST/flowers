@@ -45,6 +45,7 @@
                     %hr.my-1
                   - if @checkout.call_receiver
                     Мы позвоним получателю и уточним адрес доставки
+                    %hr.my-1
                   - else
                     .row
                       .col-4
@@ -59,8 +60,12 @@
                     Дата:
                   %strong.col-8.text-right
                     #{Russian::strftime(Time.zone.parse(@checkout.order_date), '%d %B (%A)')}, #{@checkout.order_time.strftime('примерно в %H:%M')}
-                %hr.my-1
+                -if @checkout.card.desc
+                  %hr.my-1
+                  %i.fa.fa-check
+                  Добавить открытку
                 - if @checkout.dont_call
+                  %hr.my-1
                   .small
                     Мы не будем звонить получателю, но если его не будет на месте, курьеру придется вернуться обратно.
                 %hr.my-4

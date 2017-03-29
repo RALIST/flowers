@@ -14,7 +14,8 @@
           .nav-link.active Итог
   .row
     .col-12
-      %h2.my-4 Ваш заказ
+      %h2.mt-4.text-center Ваш заказ
+      %hr.mb-4
       .row
         - @checkout.cart.products.each do |p|
           #product-img
@@ -65,11 +66,11 @@
                   %i.fa.fa-check
                   Добавить открытку
                 - if @checkout.dont_call
-                  %hr.my-1
-                  .small
-                    Мы не будем звонить получателю, но если его не будет на месте, курьеру придется вернуться обратно.
+                  .my-1
+                    %i.fa.fa-check
+                    Не звонить получателю
                 %hr.my-4
                 = button_to 'Отправить заказ', create_order_path, class: 'btn btn-success btn-block btn-lg'
-                .small.text-justify
+                .small.text-center
                   Если мы все поняли правильно, нажмите "Отправить заказ" и мы отправим заявку флористу.
                   Он свяжется с вами в ближайшее время для уточнения деталей.

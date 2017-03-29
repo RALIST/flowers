@@ -34,6 +34,7 @@ class Product < ApplicationRecord
 
   def self.price_in(price)
     unless price.blank?
+      price_range = price.split(/\D/)
       where(price: price_range[0]..price_range[1]).distinct
     end
   end

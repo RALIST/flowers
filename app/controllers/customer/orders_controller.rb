@@ -9,9 +9,13 @@ class Customer::OrdersController < Customer::CustomerController
       @order.user = current_user
     end
     if @order.save
-      @checkout.cart.positions.each do |p|
-        @order.positions.push(p)
-        @checkout.cart.positions.delete(p)
+      @checkout.cart.products.each do |p|
+        @order.products.push(p)
+        @checkout.cart.products.delete(p)
+      end
+      @checkout.cart.balloons.each do |p|
+        @order.balloons.push(p)
+        @checkout.cart.balloons.delete(p)
       end
       redirect_to products_path
       flash[:success] = 'Спасибо за заказ!'

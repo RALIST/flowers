@@ -13,5 +13,6 @@ module Flowers
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.default_locale = :ru
     config.time_zone = 'Samara'
+    config.active_record.time_zone_aware_types = [:datetime, :time]
   end
 end

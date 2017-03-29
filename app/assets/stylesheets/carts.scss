@@ -47,9 +47,9 @@ label.btn {
 .balloons {
   @include make-col-xs(6);
   @include make-col-sm(6);
-  @include make-col-md(6);
-  @include make-col-lg(4);
-  @include make-col-xl(4);
+  @include make-col-md(4);
+  @include make-col-lg(3);
+  @include make-col-xl(3);
 }
 
 #card-toggle {

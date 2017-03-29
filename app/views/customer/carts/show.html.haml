@@ -56,7 +56,7 @@
                 = b.desc
                 .text-success
                   = number_to_currency(b.price)
-                = link_to 'В корзину', add_balloons_to_cart_path(balloon_id: b.id), class: 'btn btn-success btn-sm', method: :post
+                = link_to 'Добавить', add_balloons_to_cart_path(balloon_id: b.id), class: 'btn btn-success btn-sm', method: :post
   .row.mt-4.hidden-md-up
     .col-12
       = link_to new_checkout_path, class: 'btn btn-success btn-lg btn-block' do

@@ -14,32 +14,57 @@
           .nav-link.active Итог
   .row
     .col-12
-      %h1.my-2 Ваш заказ
-      - @checkout.cart.positions.each do |p|
-        = p.product.name
-        %br
-        = image_tag p.product.images.first.pic(:small)
-        - case @checkout.delivery
-        - when 'self'
-          Вы хотите забрать готовый букет по адресу:
-          %strong
-            = p.product.company.name
-          Он будет готов к
-          %strong
-            = @checkout.order_date
-            = @checkout.order_time
-        - when 'send'
-          - if @checkout.receiver
-            Доставить для
-            = @checkout.receiver.name
-            = @checkout.receiver.phone
-          - if @checkout.call_receiver
-            Мы позвоним получателю и уточним адрес доставки.
-          - else
-            по адресу:
-            = @checkout.address.street
-            = @checkout.address.house
-            = @checkout.address.flat if @checkout.address.flat
-
-      .lead Если мы все поняли правильно, нажмите "Отправить заказ" и мы отправим заявку флористу. Он свяжется с вами в ближайшее время для уточнения деталей.
-    = button_to 'Отправить заказ', create_order_path, class: 'btn btn-success btn-lg'
+      %h2.my-4 Ваш заказ
+      .row
+        - @checkout.cart.products.each do |p|
+          #product-img
+            = image_tag p.images.first.pic(:large), class: 'img-fluid'
+          #product-desc
+            .card
+              %h4.card-title.text-center
+                = p.try(:name)
+                .small
+                  - @checkout.cart.balloons.each do |b|
+                    +
+                    = b.try(:desc)
+                  .text-success.my-1
+                    = number_to_currency(@checkout.cart.total_price)
+              .card-block.text-justify
+                - case @checkout.delivery
+                - when 'self'
+                  Вы заберете букет сами по адресу:
+                  %strong
+                    = p.company.name
+                - when 'send'
+                  - if @checkout.receiver
+                    .row
+                      .col-4
+                        Доставка для
+                      %strong.col-8.text-right
+                        #{@checkout.receiver.name} (#{@checkout.receiver.phone})
+                    %hr.my-1
+                  - if @checkout.call_receiver
+                    Мы позвоним получателю и уточним адрес доставки
+                  - else
+                    .row
+                      .col-4
+                        по адресу:
+                      %strong.col-8.text-right
+                        = @checkout.address.street
+                        = @checkout.address.house
+                        = @checkout.address.flat if @checkout.address.flat
+                    %hr.my-1
+                .row
+                  .col-4
+                    Дата:
+                  %strong.col-8.text-right
+                    #{Russian::strftime(Time.zone.parse(@checkout.order_date), '%d %B (%A)')}, #{@checkout.order_time.strftime('примерно в %H:%M')}
+                %hr.my-1
+                - if @checkout.dont_call
+                  .small
+                    Мы не будем звонить получателю, но если его не будет на месте, курьеру придется вернуться обратно.
+                %hr.my-4
+                = button_to 'Отправить заказ', create_order_path, class: 'btn btn-success btn-block btn-lg'
+                .small.text-justify
+                  Если мы все поняли правильно, нажмите "Отправить заказ" и мы отправим заявку флористу.
+                  Он свяжется с вами в ближайшее время для уточнения деталей.

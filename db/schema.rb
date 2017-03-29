@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328121941) do
+ActiveRecord::Schema.define(version: 20170329070528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,11 +67,11 @@ ActiveRecord::Schema.define(version: 20170328121941) do
     t.integer  "receiver_id"
     t.integer  "address_id"
     t.string   "order_date"
-    t.string   "order_time"
     t.string   "delivery"
     t.integer  "card_id"
     t.boolean  "call_receiver"
     t.boolean  "dont_call"
+    t.time     "order_time"
     t.index ["address_id"], name: "index_checkouts_on_address_id", using: :btree
     t.index ["card_id"], name: "index_checkouts_on_card_id", using: :btree
     t.index ["cart_id"], name: "index_checkouts_on_cart_id", using: :btree

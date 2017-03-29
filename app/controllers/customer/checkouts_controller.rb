@@ -14,9 +14,11 @@ class Customer::CheckoutsController < Customer::CustomerController
       @params = checkout_params.except(:receiver_attributes, :address_attributes, :call_receiver, :dont_call)
       @checkout = Checkout.create(@params)
     when 'send'
-      if params[:checkout][:call_receiver]
+      if params[:checkout][:call_receiver] == 1
         @params = checkout_params.except(:address_attributes)
         @checkout = Checkout.create(@params)
+      else
+        @checkout = Checkout.create(checkout_params)
       end
     end
     @checkout.cart = current_cart

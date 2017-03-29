@@ -8,12 +8,13 @@ class Company < ApplicationRecord
   has_many :comments, as: :commentable
   has_one :address, dependent: :destroy
 
-  accepts_nested_attributes_for :image, :address
+  accepts_nested_attributes_for :image
+  accepts_nested_attributes_for :address, reject_if: proc { |attributes| attributes['street'].blank? && attributes['house'].blank?  }
 
   ratyrate_rateable "delivery_speed", "flowers_quality", "price"
 
   validates :name, :address,
-            :owner_id, :opened_at,
+            :owner, :opened_at,
             :closed_at, presence: true
 
   def total_rating
@@ -27,6 +28,16 @@ class Company < ApplicationRecord
 
   def to_param
     [id, self.name.parameterize].join('-')
+  end
+
+  def self.opened
+    ids = []
+    all.each do |c|
+      unless Time.current.hour < c.opened_at.in_time_zone.hour || Time.current.hour > c.closed_at.in_time_zone.hour
+        ids << c.id
+      end
+    end
+    return ids
   end
 
   def opened_interval

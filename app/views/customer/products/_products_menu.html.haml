@@ -1,13 +1,13 @@
 .row
   #delivery
-    - if params[:date].blank?
-      = link_to @params.merge(date: :today), remote: true do
+    - if params[:opened].blank?
+      = link_to @params.merge(opened: :today), remote: true do
         .card
           %i.fa.fa-calendar-check-o
           %br
           Доставка сегодня
     - else
-      = link_to @params.except(:date), remote: true do
+      = link_to @params.except(:opened), remote: true do
         .card
           %i.fa.fa-times
           %br

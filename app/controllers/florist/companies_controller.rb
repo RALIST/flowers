@@ -73,6 +73,11 @@ class Florist::CompaniesController < Florist::FloristController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:name, :desc, :url, :owner_id, :closed_at, :opened_at, image_attributes:[:pic], address_attributes:[:street, :house, :flat])
+      params.require(:company).permit(:name, :desc, :url,
+                    :owner_id, :closed_at,
+                    :opened_at,
+                    :fb_url, :vk_url, :insta_url, :id,
+                    image_attributes:[:pic],
+                    address_attributes:[:street, :house, :flat])
     end
 end

@@ -4,6 +4,7 @@ class Customer::ProductsController < Customer::CustomerController
   has_scope :price_in
   has_scope :type
   has_scope :occasion
+  has_scope :opened
   # GET /products
   # GET /products.json
   def index
@@ -69,7 +70,7 @@ class Customer::ProductsController < Customer::CustomerController
   end
 
   def search_params
-    params.permit(:color, :price_in, :type, :occasion, :date)
+    params.permit(:color, :price_in, :type, :occasion, :opened)
   end
 
   private

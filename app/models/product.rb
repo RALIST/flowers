@@ -34,7 +34,6 @@ class Product < ApplicationRecord
 
   def self.price_in(price)
     unless price.blank?
-      puts price_range = price.split(/\-/)
       where(price: price_range[0]..price_range[1]).distinct
     end
   end
@@ -45,6 +44,10 @@ class Product < ApplicationRecord
 
   def self.occasion(occasion)
     joins(:occasions).where(occasions: {name: occasion}).distinct
+  end
+
+  def self.opened(date)
+    joins(:company).where(companies:{id: Company.opened})
   end
 
   def set_occasion

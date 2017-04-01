@@ -14,5 +14,5 @@
         .col-12.lead.mb-2.hidden-lg-down#count
           Всего #{@products.count} букетов
       .row.card-deck#products
-        = render(collection: @products, partial: 'thumb_product', as: :product) || 'Ничего не найдено!'
+        = render(collection: @products, partial: 'thumb_product', as: :product, cached: true) || 'Ничего не найдено!'
 

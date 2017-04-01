@@ -2,8 +2,10 @@ class Customer::CompaniesController < Customer::CustomerController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
   has_scope :color
   has_scope :price_in
-  # GET /companies
-  # GET /companies.json
+  has_scope :type
+  has_scope :occasion
+  has_scope :opened
+
   def index
     @companies = Company.all
   end

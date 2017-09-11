@@ -5,13 +5,13 @@
     Цветы на любой вкус и бюджет от лучших флористов
   %hr.my-4
   .row
-    .col-2#menu.hidden-lg-down
+    .col-2#menu.d-none.d-lg-block
       = render 'customer/products/products_menu'
-    .col-12.hidden-md-up
+    .col-12.d-lg-none
       = render 'layouts/resp_menu'
     .col-md-12.col-sm-12.col-lg-10
       .row
-        .col-12.lead.mb-2.hidden-lg-down#count
+        .col-12.lead.mb-2.d-none.d-md-block#count
           Всего #{@products.count} букетов
       .row.card-deck#products
         = render(collection: @products, partial: 'thumb_product', as: :product, cached: true) || 'Ничего не найдено!'

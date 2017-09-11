@@ -37,7 +37,7 @@ gem 'roo-xls'
 gem 'will_paginate'
 gem 'figaro'
 gem 'fog-aws'
-gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'bootstrap', '~> 4.0.0.beta'
 gem 'unicode'
 gem 'premailer-rails'
 gem 'russian'
@@ -50,7 +50,7 @@ gem 'has_scope'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-will_paginate'
 gem 'font_assets'
-gem "jquery-slick-rails"
+gem 'jquery-slick-rails'
 gem 'popper_js'
 
 

@@ -1,19 +1,18 @@
 #header
   .container
     .row.align-items-center
-      %nav.navbar.navbar-toggleable-md.col-12.no-gutters
-        .d-flex.flex-row.justify-content-between
-          = link_to products_path, class: 'navbar-brand' do
-            = image_tag 'logo.png', class: 'img-fluid'
-          %button.navbar-toggler.align-self-center{data: {toggle: "collapse", target: "#navbar"} }
-            %i.fa.fa-bars
+      %nav.navbar.navbar-expand-lg.col-12.no-gutters
+        = link_to products_path, class: 'navbar-brand' do
+          = image_tag 'logo.png', class: 'img-fluid'
+        %button.navbar-toggler.align-self-center{data: {toggle: "collapse", target: "#navbar"} }
+          %i.fa.fa-bars
         #navbar.collapse.navbar-collapse.text-left.justify-content-end
           %ul.navbar-nav.align-items-center
             - unless current_user
-              .hidden-lg-down
+              .d-none.d-lg-block
                 = link_to 'Вход/Регистрация', login_path, class: 'nav-link btn btn-outline-success d-inline'
                 = link_to 'Я флорист', florist_signin_path, class: 'nav-link btn btn-outline-success d-inline'
-              .hidden-md-up.align-self-start
+              .d-lg-none.d-md-block.align-self-start
                 %li.nav-item
                   = link_to 'Вход/Регистрация', login_path, class: 'nav-link'
                 %li.nav-item

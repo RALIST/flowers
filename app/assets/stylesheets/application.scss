@@ -12,7 +12,8 @@
  *
  */
 @import 'jquery-ui';
-@import 'variables';
+@import 'custom_variables';
+@import 'bootstrap';
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import 'header';
@@ -25,7 +26,6 @@
 @import url('https://fonts.googleapis.com/css?family=Gabriela');
 @import url('https://fonts.googleapis.com/css?family=EB+Garamond');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,800');
-@import "bootstrap";
 @import 'bootstrap-datepicker';
 
 

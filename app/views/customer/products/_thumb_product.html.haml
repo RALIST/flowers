@@ -1,21 +1,21 @@
-.col-sm-6.col-xs-12.col-lg-4.col-md-6
+#product
   .card
     .card-image-top.text-center
       = link_to product_path(product) do
         - product.images.each do |i|
           = image_tag i.pic.url(:thumb), class: 'img-fluid img-cover'
-    .card-block
+    .card-body
       .d-flex.justify-content-between.align-items-center
-        %span.small
+        %span
           = product.name
         #price
           = number_to_currency(product.price, precision: 0)
       %hr.my-2
       = link_to company_path(product.company) do
         .row.align-items-center
-          #company-img
+          .col#company-img
             = image_tag product.company.image.pic(:small), class: 'img-fluid rounded-circle', style: 'width: 50px; height: 50px;'
-          #company-desc
+          .col#company-desc.text-right
             .small
               = product.company.name
             .small

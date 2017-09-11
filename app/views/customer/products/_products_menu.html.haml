@@ -1,18 +1,18 @@
-.row
-  #delivery
-    - if params[:opened].blank?
-      = link_to @params.merge(opened: :today), remote: true do
-        .card
-          %i.fa.fa-calendar-check-o
-          %br
+
+#delivery
+  - if params[:opened].blank?
+    = link_to @params.merge(opened: :today), remote: true do
+      .card
+        %i.fa.fa-calendar-check-o
+        %br
+        Доставка сегодня
+  - else
+    = link_to @params.except(:opened), remote: true do
+      .card
+        %i.fa.fa-times
+        %br
+        .reset
           Доставка сегодня
-    - else
-      = link_to @params.except(:opened), remote: true do
-        .card
-          %i.fa.fa-times
-          %br
-          .reset
-            Доставка сегодня
 %hr
 %h5 Цена
 %ul.nav.small.flex-lg-column.flex-sm-row.flex-wrap.justify-content-between#product-menu

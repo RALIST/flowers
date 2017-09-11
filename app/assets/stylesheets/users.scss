@@ -1,17 +1,14 @@
 .form-wrapper {
-  @include make-col-xl(5);
-  @include make-col-lg(5);
+
   background: transparentize(#ffffff, 0.2);
 }
 
 .account-menu {
-  @include make-col-xl(3);
-  @include make-col-lg(3);
+
 }
 
 .user-info {
-  @include make-col-xl(9);
-  @include make-col-lg(9);
+
 }
 
 #account {

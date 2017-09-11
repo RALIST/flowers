@@ -8,6 +8,19 @@
     height: auto;
   }
 }
+
+#product{
+  @include media-breakpoint-up(md){
+    @include make-col(4);
+  }
+  @include media-breakpoint-only(md){
+    @include make-col(6);
+  }
+  @include media-breakpoint-down(sm){
+    @include make-col(12);
+  }
+}
+
 #price {
   font-weight: 700;
   color: $brand-primary;
@@ -24,11 +37,6 @@
   text-align: center;
   // padding: 15px 15px;
   margin-bottom: 0;
-  @include make-col-xs(12);
-  @include make-col-sm(12);
-  @include make-col-md(12);
-  @include make-col-lg(12);
-  @include make-col-xl(12);
   font-weight: 400;
   i {
     font-size: 1.5rem;
@@ -59,38 +67,22 @@
 }
 
 #company-img {
-  @include make-col-xs(4);
-  @include make-col-sm(4);
-  @include make-col-md(4);
-  @include make-col-lg(4);
-  @include make-col-xl(4);
+
   img {
     object-fit: cover;
   }
 }
 
 #company-desc {
-  @include make-col-xs(8);
-  @include make-col-sm(8);
-  @include make-col-md(8);
-  @include make-col-lg(8);
-  @include make-col-xl(8);
+
 }
 
 #product-img, #product-desc {
-  @include make-col-xs(12);
-  @include make-col-sm(12);
-  @include make-col-md(6);
-  @include make-col-lg(6);
-  @include make-col-xl(6);
+
 }
 
 #first-btn, #second-btn, #third-btn {
-  @include make-col-xs(12);
-  @include make-col-sm(12);
-  @include make-col-md(4);
-  @include make-col-lg(4);
-  @include make-col-xl(4);
+
 }
 
 @include media-breakpoint-down(lg){

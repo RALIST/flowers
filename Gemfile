@@ -48,18 +48,17 @@ gem 'rack-canonical-host'
 gem 'ratyrate'
 gem 'has_scope'
 gem 'bootstrap-datepicker-rails'
-
 gem 'bootstrap-will_paginate'
 gem 'paperclip-compression'
 gem 'font_assets'
 gem "jquery-slick-rails"
 gem "paperclip-optimizer"
+gem 'popper_js'
 
 
 group :production do
   gem 'rails_12factor'
   gem 'heroku-deflater'
   gem 'image_optim_rails'
-  gem 'image_optim_pack'
   gem 'rack-cors', :require => 'rack/cors'
 end

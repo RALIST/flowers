@@ -4,7 +4,7 @@
     .user-info
       %h4.text-center
         Личная информация
-      .col-6
+      #user-form.text-secondary.m-auto
         = form_for @user, url: florist_user_path(@user) do |f|
           .form-group
             = f.label :name,  'Имя'

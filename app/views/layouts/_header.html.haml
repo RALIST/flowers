@@ -22,7 +22,7 @@
                 %a.dropdown-toggle{data:{toggle: 'dropdown'}}
                   Мой аккаунт
                 .dropdown-menu
-                  %h4.dropdown-header
+                  %h4.dropdown-header.text-dark
                     Здравствуйте,
                     - unless current_user.name.blank?
                       = current_user.name
@@ -59,7 +59,7 @@
                     = link_to logout_path, method: :delete do
                       %i.fa.fa-sign-out
                       Выйти
-              .hidden-lg-up.align-self-start
+              .d-lg-none.align-self-start
                 %li.nav-item
                   - case current_user.role
                   - when 'customer'

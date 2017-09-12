@@ -12,9 +12,9 @@
           = @company.name
           %small
             = link_to edit_florist_company_path(@company) do
-              %i.fa.fa-pencil-square-o
+              %i.fa.fa-pencil-square-o.mx-3
             = link_to named_company_path(@company), target: '_blank' do
-              %i.fa.fa-globe
+              %i.fa.fa-globe.mx-3
         = total_rating_for @company, readonly: true
         %p
           %h5 Статистика за неделю:
@@ -22,9 +22,9 @@
             Заказов
           %p
             Просмотров
-          %p
-          = link_to 'Удалить', florist_company_path(@company), method: :delete, class: 'btn btn-danger'
 
 
         = link_to 'Отзывы', company_path(@company, anchor: 'comments'), class: 'btn btn-primary'
 
+        / %p
+        /   = link_to 'Удалить', florist_company_path(@company), method: :delete, class: 'btn btn-danger btn-sm'

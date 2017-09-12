@@ -1,6 +1,6 @@
 #comment
   .card
-    .card-block
+    .card-body
       %strong
         = comment.user.full_name
       %br
@@ -16,7 +16,7 @@
         %p.lead
           .small
             %strong
-              Ответ компании:
+              Ответ флориста:
           - comment.comments.each do |c|
             = c.desc
       - if current_user && @company.owner == Florist.find(current_user.id)

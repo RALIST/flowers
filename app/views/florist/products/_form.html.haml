@@ -1,6 +1,6 @@
 = form_for [:florist, @product] do |f|
   .row
-    .col-6
+    .col-lg-6.col-sm-12
       .form-group
         = f.label :name, 'Название'
         = f.text_field :name, class: 'form-control'
@@ -26,7 +26,7 @@
         = f.label 'Изображение'
         = f.fields_for :images, Image.new do |i|
           = i.file_field :pic, class: 'form-control'
-    .col-6
+    .col-lg-6.col-sm-12
       %strong Параметры букета
       %hr.form-group
         = f.label 'Выберите цвет букета'

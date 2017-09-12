@@ -1,22 +1,23 @@
-.container-fluid
-  .shop-header.py-5.bg-inverse.text-white
+.container-fluid.p-0
+  .shop-header.py-5.bg-dark.text-white
     .container
       .row
-        #company-logo
-          = image_tag @company.image.pic.url(:thumb), class: 'img-fluid rounded img-cover'
-        #company-info
-          %h3
+        #company-logo.d-none.d-lg-block
+          = image_tag @company.image.pic.url(:thumb), class: 'img-fluid img-thumbnail'
+        #company-info.pl-5
+          %h2
             = @company.name
           #rate
-            Доставка:
+            Скорость доставки:
             = rating_for @company, 'delivery_speed', readonly: true
           #rate
-            Качество:
+            Качество букетов:
             = rating_for @company, 'flowers_quality', readonly: true
-          %br
-          - if @company.closed_at && @company.opened_at
-            = @company.opened_interval
-        #company-contacts.text-right.hidden-sm-down
+          .mt-3.small.font-italic
+            %i.fa.fa-clock-o
+            - if @company.closed_at && @company.opened_at
+              = @company.opened_interval
+        #company-contacts.text-right.d-none.d-lg-block
           %h4
             Связаться
           .h5
@@ -49,11 +50,11 @@
   .shop-content
     .container
       .row
-        .col-2.hidden-md-down#menu
+        .col-2.d-none.d-lg-block#menu
           = render 'customer/products/products_menu'
         .col-lg-10.col-sm-12.col-xs-12.col-md-12.tab-content
           .row.tab-pane.active#products
-            .col-12.hidden-md-up
+            .col-12.d-lg-none
               = render 'layouts/resp_menu'
             .col-12.lead.mb-2#count
               Всего #{@products.count} букетов
@@ -62,15 +63,15 @@
           .row.tab-pane.collapse#comments
             .card-deck
               = render @comments
-            #write-review
-              %h4 Пожалуйста, оцените компанию
+            #write-review.m-auto
+              %h4 Пожалуйста, оцените флориста
               - if current_user
-                Качество букета:
-                #rate
+                #rate.mb-2
+                  Качество букета:
                   = rating_for_user @company,current_user, 'flowers_quality', disable_after_rate: false
                 %br
-                Качество доставки:
-                #rate
+                #rate.my-2
+                  Качество доставки:
                   = rating_for_user @company, current_user, 'delivery_speed',disable_after_rate: false, cancel: false
                 = form_for [@company, Comment.new] do |f|
                   .form-group

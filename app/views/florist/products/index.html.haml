@@ -6,7 +6,7 @@
         %h3 Ваши букеты
         = link_to 'Добавить букет', new_florist_product_path, class: 'btn btn-primary my-3'
         .row.card-deck
-          = render(@products) || 'Вы не добавили ни одного букета'
+          = render(@products) || '<p class="ml-3">Вы не добавили ни одного букета</p>'.html_safe
       - else
         %h3 Добавьте сначала магазин
 

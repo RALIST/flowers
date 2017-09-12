@@ -4,10 +4,33 @@
 }
 
 .account-menu {
+  @include media-breakpoint-up(md){
+    @include make-col(3);
+  }
+
+  @include media-breakpoint-down(lg){
+    @include make-col(12);
+  }
 
 }
 
 .user-info {
+  @include media-breakpoint-up(md){
+    @include make-col(9);
+  }
+
+  @include media-breakpoint-down(lg){
+    @include make-col(12);
+  }
+  #user-form{
+    @include media-breakpoint-up(md){
+      @include make-col(6);
+    }
+
+    @include media-breakpoint-down(lg){
+      @include make-col(10);
+    }
+  }
 
 }
 

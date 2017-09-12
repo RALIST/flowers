@@ -78,6 +78,15 @@
 }
 
 #product-img, #product-desc {
+  @include media-breakpoint-up(lg){
+    @include make-col(6);
+  }
+  @include media-breakpoint-only(md){
+    @include make-col(6);
+  }
+  @include media-breakpoint-down(lg){
+    @include make-col(12);
+  }
 
 }
 

@@ -9,10 +9,9 @@
       = render 'customer/products/products_menu'
     .col-12.d-lg-none
       = render 'layouts/resp_menu'
-    .col-md-12.col-sm-12.col-lg-10
-      .row
-        .col-12.lead.mb-2.d-none.d-md-block#count
-          Всего #{@products.count} букетов
-      .row.card-deck#products
+    #products
+      .col-12.lead.mb-2.d-none.d-md-block#count
+        Всего #{@products.count} букетов
+      .col-12.card-deck
         = render(collection: @products, partial: 'thumb_product', as: :product, cached: true) || 'Ничего не найдено!'
 

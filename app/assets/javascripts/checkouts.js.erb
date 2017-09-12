@@ -24,8 +24,8 @@ $(document).ready(function(){
 
   $(document).on('click', '#slider input', function(){
     if (this.checked){
-      street.removeProp('required')
-      house.removeProp('required')
+      street.prop('required', false)
+      house.prop('required', false)
     }else{
       street.prop('required', true)
       house.prop('required', true)
@@ -47,10 +47,10 @@ $(document).ready(function() {
 
 $(document).on('click', 'input#checkout_delivery_self', function(){
   $(this).closest('label').tab('show');
-  $('#address-form #checkout_address_attributes_street').removeProp('required');
-  $('#checkout_address_attributes_house').removeProp('required');
-  $('#checkout_receiver_attributes_name').removeProp('required');
-  $('#checkout_receiver_attributes_phone').removeProp('required');
+  $('#address-form #checkout_address_attributes_street').prop('required', false);;
+  $('#checkout_address_attributes_house').prop('required', false);
+  $('#checkout_receiver_attributes_name').prop('required', false);
+  $('#checkout_receiver_attributes_phone').prop('required', false);
 });
 
 $(document).on('click', 'input#checkout_delivery_send', function(){
@@ -67,26 +67,30 @@ $(document).on('click', '#next', function(){
   $(inputs).each(function(i, elem){
     if($(elem).val() == ""){
       emptyFields.push(elem)
+    }else{
+      $(inputs).each(function(i, field){
+        $(field).addClass('is-valid');
+      })
     }
   })
   if (emptyFields.length){
     $(emptyFields).each(function(i, field){
-      $(field).addClass('form-control-danger').closest('.form-group').addClass('has-danger')
+      $(field).addClass('is-invalid');
     })
   }else{
     $(inputs).each(function(i, field){
-      $(field).removeClass('form-control-danger').closest('.form-group').removeClass('has-danger')
+      $(field).removeClass('is-invalid').closest('.form-group').removeClass('has-danger')
     })
     $('#options').removeClass('disabled').tab('show');
   }
 })
 
-$(document).on('keyup', function(){
+$(document).on('keyup, click', function(){
   var inputs = $('form#new_checkout :input')
   $(inputs).each(function(i, elem){
     if($(elem).val() != ""){
-      $(elem).addClass('form-control-success').closest('.form-group').addClass('has-success');
-      $(elem).removeClass('form-control-danger').closest('.form-group').removeClass('has-danger');
+      $(elem).addClass('is-valid').closest('.form-group').addClass('has-success');
+      $(elem).removeClass('is-invalid').closest('.form-group').removeClass('has-danger');
     }
   })
 })

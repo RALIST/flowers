@@ -6,7 +6,7 @@
           = image_tag i.pic.url(:large), class: 'img-fluid'
       #product-desc
         .card
-          %h4.card-title.text-center
+          %h3.card-title.text-center
             = @product.name
           .lead.text-success.text-center.font-weight-bold
             #product-price-simple
@@ -49,19 +49,18 @@
                   Описание букета
                 %p
                   = @product.desc
-        .row.my-2
-          .col-12.text-center
-            %strong
-              Дизайн
-          #company-img.col-6.text-right
+        .d-flex.align-items-center.justify-content-end
+          .d-flex.mr-3.align-self-start
+            .font-italic
+              Designed by
+          #company-img.d-flex
             = image_tag @product.company.image.pic.url(:small), class: 'img-fluid rounded-circle', style: 'width: 100px; height: 100px;'
-          #company-desc.text-left.col-6
-            %h4
+          #company-desc.d-flex.ml-3.text-right
+            %h4.mt-0
               = @product.company.name
-              .small{style: 'font-size: 0.6em;'}
-                / = @product.company.owner.full_name
-                = total_rating_for @product.company, readonly: true
-            %p
-              = link_to 'В магазин', company_path(@product.company), class: 'btn btn-sm btn-outline-primary'
+
+              = total_rating_for @product.company, readonly: true
+              .mt-2
+                = link_to 'В магазин', company_path(@product.company), class: 'btn btn-sm btn-outline-primary'
 
 

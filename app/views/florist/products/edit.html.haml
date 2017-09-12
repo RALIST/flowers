@@ -1,7 +1,6 @@
-%h1 Editing product
-
-= render 'form'
-
-= link_to 'Show', @product
-\|
-= link_to 'Back', products_path
+.container#account
+  .row
+    = render 'florist/dashboard/left_menu'
+    .user-info
+      %h2 Редактирование букета
+      = render 'form'

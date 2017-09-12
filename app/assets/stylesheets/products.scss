@@ -87,10 +87,27 @@
   @include media-breakpoint-down(lg){
     @include make-col(12);
   }
+}
+
+#product-img {
+  img {
+    min-width: 100%;
+    min-height: 510px;
+    max-height: 600px;
+    object-fit: cover;
+  }
+
 
 }
 
 #first-btn, #second-btn, #third-btn {
+  span{
+    @include media-breakpoint-down(lg){
+      font-size: 1rem;
+    }
+    font-family: $font-family-serif;
+    font-weight: 400;
+  }
 
 }
 

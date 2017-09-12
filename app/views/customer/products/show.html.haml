@@ -1,10 +1,15 @@
 - cache @product do
   .container#account
     .row
-      #product-img
+      #product-img.mx-auto
         - @product.images.each do |i|
-          = image_tag i.pic.url(:large), class: 'img-fluid'
-      #product-desc
+          = image_tag i.pic.url(:large), class: 'img-fluid img-thumbnail'
+        .my-2.d-none.d-lg-block
+          %strong
+            Описание букета
+          %p.small
+            = @product.desc
+      #product-desc.mx-auto
         .card
           %h3.card-title.text-center
             = @product.name
@@ -16,39 +21,41 @@
             #product-price-lux.collapse
               = number_to_currency(@product.lux_price)
 
-          .card-body.justify-content-around
+          .card-body.justify-content-around.pt-0
             = form_tag add_to_cart_path(@product), method: :post do |f|
-              .row#buttons{data: {toggle: 'buttons'}}
-                #first-btn.m-auto
+              .row#buttons.bg-light.py-3{data: {toggle: 'buttons'}}
+                #first-btn.col-4.pr-1
                   = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block active', id: "first" do
                     %span Как есть
                     = radio_button_tag :price_option, :simple, true, class: 'toggle'
                 - if @product.premium_price
-                  #second-btn.m-auto
+                  #second-btn.col-4.px-1
                     = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block', id: "second"  do
                       %span Премиум
                       = radio_button_tag :price_option, :premium, false, class: 'toggle'
                 - if @product.lux_price
-                  #third-btn.m-auto
+                  #third-btn.col-4.pl-1
                     = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block', id: "third"  do
                       = radio_button_tag :price_option, :lux, false, class: 'toggle'
                       %span Люкс
-              .tabs.small
-                .tab.card-block.text-center#simple
-                  Букет будет выглядеть примерно как на фото
-                .tab.card-block.text-center.collapse#premium
-                  = @product.premium_desc
-                .tab.card-block.text-center.collapse#lux
-                  = @product.lux_desc
+                .tabs.small.px-3
+                  .tab.card-block.text-justify#simple
+                    Букет будет выглядеть примерно как на фото
+                  .tab.card-block.text-justify.collapse#premium
+                    = @product.premium_desc
+                  .tab.card-block.text-justify.collapse#lux
+                    = @product.lux_desc
               %hr
               .row
                 .col-12
                   = submit_tag 'оформить заказ', class: 'btn btn-success btn-lg btn-block text-uppercase'
-              .my-2
-                %strong
-                  Описание букета
-                %p
-                  = @product.desc
+              .mt-3.small.font-italic
+
+                %i.fa.fa-clock-o
+                %span.text-primary
+                  Нужен сегодня?
+                - if @product.company.closed_at && @product.company.opened_at
+                  = @product.company.opened_interval
         .d-flex.align-items-center.justify-content-end
           .d-flex.mr-3.align-self-start
             .font-italic

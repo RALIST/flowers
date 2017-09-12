@@ -8,7 +8,6 @@ class Image < ApplicationRecord
                                             large: "-quality 75 -strip",
                                             thumb: "-quality 75 -strip",
                                             preview: "-quality 75 -strip"},
-                          processors: [:thumbnail, :compression],
                           default_url: ":style/missing.png"
   validates_attachment :pic, content_type: { content_type: ["image/jpeg", "image/gif", "image/png"] }
 end

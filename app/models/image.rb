@@ -1,4 +1,7 @@
 class Image < ApplicationRecord
+  require 'aws-sdk'
+  require 'aws-sdk-resources'
+
   belongs_to :imageable, polymorphic: true
   has_attached_file :pic, styles: {small:['x100', :png],
                                    thumb: ['x300', :png],

@@ -1,84 +1,82 @@
-.container-fluid.p-0
-  .shop-header.py-5.bg-dark.text-white
-    .container
-      .row
-        #company-logo.d-none.d-lg-block
-          = image_tag @company.image.pic.url(:thumb), class: 'img-fluid img-thumbnail'
-        #company-info.pl-5
-          %h2
-            = @company.name
-          #rate
-            Скорость доставки:
-            = rating_for @company, 'delivery_speed', readonly: true
-          #rate
-            Качество букетов:
-            = rating_for @company, 'flowers_quality', readonly: true
-          .mt-3.small.font-italic
-            %i.fa.fa-clock-o
-            - if @company.closed_at && @company.opened_at
-              = @company.opened_interval
-        #company-contacts.text-right.d-none.d-lg-block
-          %h4
-            Связаться
-          .h5
-            + 7 3412 4614168
-          .h3
-            - if @company.vk_url
-              = link_to '' do
-                %i.fa.fa-vk.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Вконтакте', tabindex: "0"}
-            - if @company.insta_url
-              = link_to '' do
-                %i.fa.fa-instagram.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Instagram', tabindex: "0"}
-            - if @company.fb_url
-              = link_to '' do
-                %i.fa.fa-facebook-official.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Facebook', tabindex: "0"}
+.container-fluid.bg-dark
+  .shop-header.py-5.text-white.container
+    .row
+      #company-logo.d-none.d-lg-block
+        = image_tag @company.image.pic.url(:thumb), class: 'img-fluid img-thumbnail'
+      #company-info.pl-5
+        %h2
+          = @company.name
+        #rate
+          Скорость доставки:
+          = rating_for @company, 'delivery_speed', readonly: true
+        #rate
+          Качество букетов:
+          = rating_for @company, 'flowers_quality', readonly: true
+        .mt-3.small.font-italic
+          %i.fa.fa-clock-o
+          - if @company.closed_at && @company.opened_at
+            = @company.opened_interval
+      #company-contacts.text-right.d-none.d-lg-block
+        %h4
+          Связаться
+        .h5
+          + 7 3412 4614168
+        .h3
+          - if @company.vk_url
             = link_to '' do
-              %i.fa.fa-globe.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Сайт флориста', tabindex: "0"}
-  .shop-menu.bg-faded
-    .container
-      .row.mb-5
-        .col-2.hidden-lg-down
-        #company-nav
-          %ul.nav.nav-tabs.pt-2.h5
-            %li.nav-item
-              = link_to '#products', data: {toggle: 'tab'},  class: 'nav-link active' do
-                Каталог
-            %li.nav-item
-              = link_to '#comments', data: {toggle: 'tab'}, class: 'nav-link' do
-                Отзывы (#{@company.comments.count})
+              %i.fa.fa-vk.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Вконтакте', tabindex: "0"}
+          - if @company.insta_url
+            = link_to '' do
+              %i.fa.fa-instagram.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Instagram', tabindex: "0"}
+          - if @company.fb_url
+            = link_to '' do
+              %i.fa.fa-facebook-official.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Facebook', tabindex: "0"}
+          = link_to '' do
+            %i.fa.fa-globe.px-1{data:{toggle: 'tooltip', placement: 'bottom'}, title: 'Сайт флориста', tabindex: "0"}
+.container
+  .shop-menu.bg-light
+    .row.mb-3
+      .col-2.d-none.d-lg-block
+      #company-nav
+        %ul.nav.nav-tabs.pt-2.h5
+          %li.nav-item
+            = link_to '#catalog', data: {toggle: 'tab'},  class: 'nav-link active' do
+              Каталог
+          %li.nav-item
+            = link_to '#comments', data: {toggle: 'tab'}, class: 'nav-link' do
+              Отзывы (#{@company.comments.count})
 
-  .shop-content
-    .container
-      .row
-        .col-2.d-none.d-lg-block#menu
-          = render 'customer/products/products_menu'
-        .col-lg-10.col-sm-12.col-xs-12.col-md-12.tab-content
-          .row.tab-pane.active#products
-            .col-12.d-lg-none
-              = render 'layouts/resp_menu'
-            .col-12.lead.mb-2#count
-              Всего #{@products.count} букетов
-            .card-deck#product-list
-              = render collection:  @products, partial: 'customer/products/thumb_product', as: :product
-          .row.tab-pane.collapse#comments
-            .card-deck
-              = render @comments
-            #write-review.m-auto
-              %h4 Пожалуйста, оцените флориста
-              - if current_user
-                #rate.mb-2
-                  Качество букета:
-                  = rating_for_user @company,current_user, 'flowers_quality', disable_after_rate: false
-                %br
-                #rate.my-2
-                  Качество доставки:
-                  = rating_for_user @company, current_user, 'delivery_speed',disable_after_rate: false, cancel: false
-                = form_for [@company, Comment.new] do |f|
-                  .form-group
-                    = f.label :desc, 'Ваш отзыв'
-                    = f.text_area :desc, rows: 5, class: 'form-control'
-                  .form-group.text-right
-                    = f.submit 'Оставить отзыв', class: 'btn btn-success'
-              - else
-                Чтобы оставлять комментарии необходимо
-                = link_to 'войти', login_path
+  .shop-content.row
+    .col-2.d-none.d-lg-block#menu
+      = render 'customer/products/products_menu'
+    .tab-content#shop
+      .tab-pane.active#catalog
+        .col-12.d-lg-none
+          = render 'layouts/resp_menu'
+        .col-12.lead.mb-2#count.d-none.d-sm-block
+          Всего #{@products.count} букетов
+        #products.mw-100
+          .col-12.card-deck#product-list.mr-0
+            = render collection: @products, partial: 'customer/products/thumb_product', as: :product
+      .tab-pane.collapse#comments
+        .col-12.card-deck
+          = render @comments
+        .col-12#write-review.m-auto
+          %h4 Пожалуйста, оцените флориста
+          - if current_user
+            #rate.mb-2
+              Качество букета:
+              = rating_for_user @company,current_user, 'flowers_quality', disable_after_rate: false
+            %br
+            #rate.my-2
+              Качество доставки:
+              = rating_for_user @company, current_user, 'delivery_speed',disable_after_rate: false, cancel: false
+            = form_for [@company, Comment.new] do |f|
+              .form-group
+                = f.label :desc, 'Ваш отзыв'
+                = f.text_area :desc, rows: 5, class: 'form-control'
+              .form-group.text-right
+                = f.submit 'Оставить отзыв', class: 'btn btn-success'
+          - else
+            Чтобы оставлять комментарии необходимо
+            = link_to 'войти', login_path

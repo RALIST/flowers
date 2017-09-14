@@ -1,52 +1,33 @@
-.container.my-4
-  .row
+.container
+  .row.mt-4
     %h2.col-lg-6.col-sm-12
       Букеты в корзине
-    .col-lg-6.col-sm-12.text-right.hidden-lg-down
+    .col-lg-6.col-sm-12.text-right.d-none.d-lg-block
       = link_to new_checkout_path, class: 'btn btn-success' do
         Продолжить
         %small
           (#{number_to_currency(@cart.total_price, precision: 0)})
   %hr
   .row
-    .cart-products.border-right
+    .cart-products
       - @cart.products.each do |product|
-        .row
-          .col-12
-            %h4
-              = product.name
-              %small
-                = link_to  remove_from_cart_path(@cart.positions.where(product: product).first), method: :delete do
-                  %i.fa.fa-times
-            .lead.text-success
-              / - case @cart.positions.where(product: product).first.price_type
-              / - when 'simple'
-              /   = number_to_currency(product.price)
-              / - when 'premium'
-              /   = number_to_currency(product.premium_price)
-              / - when 'lux'
-              /   = number_to_currency(product.lux_price)
-
-            .text-center
-              = image_tag product.images.first.pic(:thumb), class: 'img-fluid'
-            %hr
-      .row.no-gutters
-        -@cart.balloons.each do |b|
-          .sub-products.card.mb-0
-            .card-block.p-2
-              .card-text.small
-                = b.desc
-                = link_to  remove_from_cart_path(@cart.positions.where(balloon: b).first), method: :delete do
-                  %i.fa.fa-times
-                .text-success
-                  = number_to_currency(b.price)
+        %h4
+          = product.name
+          %small
+            = link_to  remove_from_cart_path(@cart.positions.where(product: product).first), method: :delete do
+              %i.fa.fa-times
+        = image_tag product.images.first.pic(:thumb), class: 'img-fluid img-thumbnail'
+    .cart-info
+      %h4
+        Информация о флористе
+  %hr
     .add-sub-products
       %h4
         Добавьте к букету
       %h5
         Воздушные шары
       %hr
-      .row.no-gutters
+      .row
         - @balloons.each do |b|
           .balloons.card.mb-0
             .card-block.p-2.align-items-end
@@ -57,7 +38,7 @@
                 .text-success
                   = number_to_currency(b.price)
                 = link_to 'Добавить', add_balloons_to_cart_path(balloon_id: b.id), class: 'btn btn-success btn-sm', method: :post
-  .row.mt-4.hidden-md-up
+  .row.mt-4.d-lg-none
     .col-12
       = link_to new_checkout_path, class: 'btn btn-success btn-lg btn-block' do
         Продолжить

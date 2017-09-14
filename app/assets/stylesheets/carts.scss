@@ -21,7 +21,16 @@ label.btn {
 }
 
 .cart-products {
+  @include make-col(12);
+}
 
+.cart-info, .cart-products {
+  @include media-breakpoint-down(lg){
+    @include make-col(12);
+  }
+  @include media-breakpoint-up(lg){
+    @include make-col(6);
+  }
 }
 
 .sub-products {
@@ -29,7 +38,7 @@ label.btn {
 }
 
 .add-sub-products {
-
+  @include make-col(12);
 }
 
 .balloons {

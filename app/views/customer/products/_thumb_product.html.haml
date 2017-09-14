@@ -18,6 +18,8 @@
           .col#company-desc.text-right
             .small
               = product.company.name
-            .small
+            .d-flex.flex-row.align-items-center.justify-content-between
               = total_rating_for product.company, readonly: true
+              #count.pl-1.d-inline
+                (#{product.company.comments.count})
 

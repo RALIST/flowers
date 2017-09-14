@@ -22,6 +22,13 @@
       max-height: 300px;
     }
   }
+  .card{
+    margin-bottom: 1rem;
+  }
+}
+
+.card-deck {
+  margin-left: 0;
 }
 
 #price {
@@ -56,7 +63,6 @@
 }
 
 .card {
-  margin-bottom: 1.5rem;
   &:hover {
     border: 1px solid transparentize($brand-primary, 0.65)
   }
@@ -126,5 +132,17 @@
 @include media-breakpoint-down(lg){
   #product-menu {
     font-size: 1rem;
+  }
+}
+
+.star {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  img {
+    height: 100%;
   }
 }

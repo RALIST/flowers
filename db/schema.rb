@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170329112252) do
+ActiveRecord::Schema.define(version: 20170914074926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,14 +111,16 @@ ActiveRecord::Schema.define(version: 20170329112252) do
     t.string   "name"
     t.string   "desc"
     t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "owner_id"
     t.time     "opened_at"
     t.time     "closed_at"
     t.string   "fb_url"
     t.string   "vk_url"
     t.string   "insta_url"
+    t.float    "delivery_cost"
+    t.string   "paymethods",                 array: true
   end
 
   create_table "images", force: :cascade do |t|
@@ -191,6 +193,8 @@ ActiveRecord::Schema.define(version: 20170329112252) do
     t.text     "premium_desc"
     t.float    "lux_price"
     t.text     "lux_desc"
+    t.float    "height"
+    t.float    "width"
     t.index ["company_id"], name: "index_products_on_company_id", using: :btree
   end
 

@@ -3,7 +3,7 @@
   .row
     .form-group.col-6.pr-1
       / = f.label :name, 'Имя'
-      = u.text_field :name, value: (current_user.name if current_user), class: 'form-control', placeholder: 'Имя'
+      = u.text_field :name, value: (@checkout.sender.name || current_user.name if current_user), class: 'form-control', placeholder: 'Имя'
     .form-group.col-6.pl-1
       / = f.label :phone, 'Телефон'
-      = u.telephone_field :phone, value: (current_user.phone if current_user && current_user.phone.present?), class: 'form-control', placeholder: 'Телефон'
+      = u.telephone_field :phone, value: (@checkout.sender.phone || current_user.phone if current_user && current_user.phone.present?), class: 'form-control', placeholder: 'Телефон'

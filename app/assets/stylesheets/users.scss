@@ -1,5 +1,13 @@
 .form-wrapper {
+  @include media-breakpoint-up(md){
+    @include make-col(6);
+  }
 
+  @include media-breakpoint-down(lg){
+    @include make-col(10);
+  }
+  padding-left: 2rem;
+  padding-right: 2rem;
   background: transparentize(#ffffff, 0.2);
 }
 

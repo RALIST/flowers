@@ -31,6 +31,10 @@ class Customer::CheckoutsController < Customer::CustomerController
     @checkout = Checkout.find(params[:id])
   end
 
+  def edit
+    @checkout = Checkout.find(params[:id])
+  end
+
   private
     def checkout_params
       params.require(:checkout).permit(

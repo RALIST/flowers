@@ -21,7 +21,7 @@
           #product-img
             = image_tag p.images.first.pic(:large), class: 'img-fluid'
           #product-desc
-            .card
+            .card.p-4
               %h4.card-title.text-center
                 = p.try(:name)
                 .small
@@ -75,6 +75,9 @@
                     Не звонить получателю
                 %hr.my-4
                 = button_to 'Отправить заказ', create_order_path, class: 'btn btn-success btn-block btn-lg'
+                .text-center
+                  или
+                  = link_to 'отредактировать заказ', edit_checkout_path(@checkout)
                 .small.text-center
                   Если мы все поняли правильно, нажмите "Отправить заказ" и мы отправим заявку флористу.
                   Он свяжется с вами в ближайшее время для уточнения деталей.

@@ -11,33 +11,36 @@
   .row
     .cart-products
       - @cart.products.each do |product|
-        %h4
-          = product.name
-          %small
-            = link_to  remove_from_cart_path(@cart.positions.where(product: product).first), method: :delete do
-              %i.fa.fa-times
-        = image_tag product.images.first.pic(:thumb), class: 'img-fluid img-thumbnail'
-    .cart-info
-      %h4
-        Информация о флористе
+        .row
+          .product-info
+            %h4
+              = product.name
+              %small
+                = link_to  remove_from_cart_path(@cart.positions.where(product: product).first), method: :delete do
+                  %i.fa.fa-times
+            = image_tag product.images.first.pic(:thumb), class: 'img-fluid img-thumbnail'
+          .cart-info
+            %h4
+              Информация о флористе:
+            = product.company.name
   %hr
-    .add-sub-products
-      %h4
-        Добавьте к букету
-      %h5
-        Воздушные шары
-      %hr
-      .row
-        - @balloons.each do |b|
-          .balloons.card.mb-0
-            .card-block.p-2.align-items-end
-              .card-image-top
-                = image_tag b.image.pic.url(:small), class: 'img-fluid' if b.image
-              .card-text.small
-                = b.desc
-                .text-success
-                  = number_to_currency(b.price)
-                = link_to 'Добавить', add_balloons_to_cart_path(balloon_id: b.id), class: 'btn btn-success btn-sm', method: :post
+    / .add-sub-products
+    /   %h4
+    /     Добавьте к букету
+    /   %h5
+    /     Воздушные шары
+    /   %hr
+    /   .row
+    /     - @balloons.each do |b|
+    /       .balloons.card.mb-0
+    /         .card-block.p-2.align-items-end
+    /           .card-image-top
+    /             = image_tag b.image.pic.url(:small), class: 'img-fluid' if b.image
+    /           .card-text.small
+    /             = b.desc
+    /             .text-success
+    /               = number_to_currency(b.price)
+    /             = link_to 'Добавить', add_balloons_to_cart_path(balloon_id: b.id), class: 'btn btn-success btn-sm', method: :post
   .row.mt-4.d-lg-none
     .col-12
       = link_to new_checkout_path, class: 'btn btn-success btn-lg btn-block' do

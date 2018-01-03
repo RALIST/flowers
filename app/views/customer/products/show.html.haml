@@ -11,31 +11,31 @@
             = @product.desc
       #product-desc.mx-auto
         .card
-          %h3.card-title.text-center
+          %h4.card-title.text-center
             = @product.name
-          .lead.text-success.text-center.font-weight-bold
-            #product-price-simple
-              = number_to_currency(@product.price)
-            #product-price-premium.collapse
-              = number_to_currency(@product.premium_price)
-            #product-price-lux.collapse
-              = number_to_currency(@product.lux_price)
+          .text-success.text-center.bg-light.pt-2.pb-1
+            #product-price-simple.h2
+              = number_to_currency(@product.price, precision: 0)
+            #product-price-premium.collapse.h2
+              = number_to_currency(@product.premium_price, precision: 0)
+            #product-price-lux.collapse.h2
+              = number_to_currency(@product.lux_price, precision: 0)
 
           .card-body.justify-content-around.pt-0
             = form_tag add_to_cart_path(@product), method: :post do |f|
-              .row#buttons.bg-light.py-3{data: {toggle: 'buttons'}}
-                #first-btn.col-4.pr-1
-                  = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block active', id: "first" do
+              .row#buttons.bg-light{data: {toggle: 'buttons'}}
+                #first-btn.col-4.pr-1.text-uppercase
+                  = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block active py-3', id: "first" do
                     %span Как есть
                     = radio_button_tag :price_option, :simple, true, class: 'toggle'
                 - if @product.premium_price
-                  #second-btn.col-4.px-1
-                    = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block', id: "second"  do
+                  #second-btn.col-4.px-1.text-uppercase
+                    = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block py-3', id: "second"  do
                       %span Премиум
                       = radio_button_tag :price_option, :premium, false, class: 'toggle'
                 - if @product.lux_price
-                  #third-btn.col-4.pl-1
-                    = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block', id: "third"  do
+                  #third-btn.col-4.pl-1.text-uppercase
+                    = label_tag '', class: 'btn btn-outline-primary btn-lg btn-block py-3', id: "third"  do
                       = radio_button_tag :price_option, :lux, false, class: 'toggle'
                       %span Люкс
                 .tabs.small.px-3

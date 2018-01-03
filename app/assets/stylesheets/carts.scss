@@ -21,20 +21,14 @@ label.btn {
 }
 
 .cart-products {
+  @include make-col-ready();
   @include make-col(12);
 }
 
-.cart-info, .cart-products {
-  @include media-breakpoint-down(lg){
-    @include make-col(12);
-  }
-  @include media-breakpoint-up(lg){
-    @include make-col(6);
-  }
-}
 
-.sub-products {
-
+.product-info, .cart-info {
+  @include make-col-ready();
+  @include make-col(6);
 }
 
 .add-sub-products {

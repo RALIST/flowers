@@ -72,4 +72,4 @@
           = link_to type.name.capitalize, params.permit!.merge(type: type.name),remote: true, class: 'nav-link'
 %hr
 - unless @params.blank?
-  = link_to 'Очистить фильтр', @params.except(:color, :price_in, :type, :occasion, :date), remote: true, class: 'btn btn-success btn-block my-2'
+  = link_to 'Очистить фильтр', @params.except(:color, :price_in, :type, :occasion, :date, :opened), remote: true, class: 'btn btn-success btn-block my-2'

@@ -54,6 +54,7 @@ gem 'bootstrap-will_paginate'
 gem 'font_assets'
 gem 'jquery-slick-rails'
 gem 'popper_js'
+gem 'meta-tags'
 
 
 group :production do
